@@ -1,15 +1,56 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>runExercises</ion-title>
+    <ion-title>{{ listExr.nameComplexExr }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
-  <ion-list>
-    <ion-card   *ngFor="let item of listExr.Exr; let i = index" (click)="runExr (item)">
-      <h1>{{item.typeExt}}</h1>
+  <ion-list *ngIf="listExrDone.length > 0">
+    <ion-item   *ngFor="let item of listExrDone; let i = index">
+      <h1>{{item.type}}</h1>
       <h3>Count: {{item.time}}</h3>
-    </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <div >
+    <h1 *ngIf="ExrRun.type">
+      <div *ngIf = "displayTimePreStart > -1" class = "displayTime" text-center>
+        <p no-margin>{{displayTimePreStart}}</p>
+      </div>
+      <div *ngIf = "displayTimePreStart === -1" class = "displayTime" text-center>
+        <p no-margin>{{displayTime}}</p>
+      </div>
+      <!--div *ngIf = "displayTimePreStart === -1" class = "displayTimeLable" text-center no-margin no-padding>
+        {{ "RunPage.displayTime" | translate }}
+      </div-->
+      <h3 text-center>{{ExrRun.type}}</h3>
+    </h1>
+    </div>
+  <div *ngIf="(!ExrRun.type || !hasStarted) && !(listExr.Exr.length <= 0 && listExrDone.length > 0) && displayTimePreStart === -1">
+    <button ion-button color="secondary" (click)="Run()" class = "button-1">{{ "RunPage.Start" | translate}}</button>
+  </div>
+
+  <div>
+    <div *ngIf="listExr.Exr.length <= 0 && listExrDone.length > 0 && !ExrRun.type">
+        <button ion-button color="primary" (click)="Close()"  color="secondary" class = "button-1">{{ "RunPage.Close" | translate}}</button>
+    </div>
+    <table class = "button-tbl">
+    <tr *ngIf="!!ExrRun.type && hasStarted">
+      <td class = "button-2">
+        <button ion-button color="editred" (click)="pauseTimer()" *ngIf="runTimer && hasStarted"  class = "button-1">{{"RunPage.Pause" | translate}}</button>
+        <button ion-button color="secondary" (click)="resumeTimer()" *ngIf="!runTimer && hasStarted"  class = "button-1">{{"RunPage.Continue" | translate}}</button>
+      </td>
+      <td class = "button-2">
+        <button ion-button color="danger" (click)="Stop()"  class = "button-1">Stop</button>
+      </td>
+    </tr>
+    </table>
+  </div>
+
+  <ion-list *ngIf="listExr.Exr.length > 0">
+    <ion-item   *ngFor="let item of listExr.Exr; let i = index">
+      <h1>{{item.type}}</h1>
+      <h3>Count: {{item.time}}</h3>
+    </ion-item>
   </ion-list>
 </ion-content>

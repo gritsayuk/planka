@@ -14,3 +14,24 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.ion-md-exr-simple {
+  width: 60px!important;
+  margin-right: 20px;
+  content: url(../assets/Exr/exr-simple.png);
+}
+.ion-md-exr-left {
+  width: 60px!important;
+  margin-right: 20px;
+  content: url(../assets/Exr/exr-left.png);
+}
+.ion-md-exr-right {
+  width: 60px!important;
+  margin-right: 20px;
+  content: url(../assets/Exr/exr-right.png);
+}
+.ion-md-exr-cubit {
+  width: 60px!important;
+  margin-right: 20px;
+  content: url(../assets/Exr/exr-cubit.png);
+}

@@ -1,4 +1,18 @@
 {
-  "name": "application-name",
-  "version": "0.0.1"
+  "StartPage": {
+    "Title": "Exercises"
+  },
+  "RunPage": {
+    "Start": "Start",
+    "Close": "Close",
+    "Pause": "Pause",
+    "Continue": "Continue",
+    "displayTime": "(min:sec:msec)"
+  },
+  "AddComplecxExercisesPage": {
+    "NameComplex": "Name Complex",
+    "Pause": "Pause",
+    "Notification": "Notification",
+    "Time": "Time"
+  }
 }

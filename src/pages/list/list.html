@@ -1,20 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
+    <table class="header-tbl">
+      <tr >
+        <td>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </td>
+        <td>
+          <ion-title>{{'StartPage.Title' | translate}}</ion-title>
+          <!--<ion-title>StartPage</ion-title>-->
+        </td>
+        <td class = "icon-edit">
+          <ion-icon name = "create" (click) = "editReorderItems()" *ngIf = "!reorderItems" color = "editred"></ion-icon>
+          <ion-icon name = "checkmark" (click) = "editReorderItems()" *ngIf = "reorderItems" color = "editred"></ion-icon>
+        </td>
+      </tr>
+    </table>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-card   *ngFor="let item of listExr; let i = index" (click)="runExr (item)">
-      <h1>{{item.nameComplexExr}}</h1>
-      <h3>Count: {{item.Exr.length}}</h3>
-    </ion-card>
+   <ion-list *ngIf="listExr.length > 0" side = "end" reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
+     <ion-item-sliding *ngFor="let item of listExr; let i = index" >
+       <ion-item (click)="runExr (item)">
+            <h1>{{item.nameComplexExr}}</h1>
+            <h3>Count: {{item.Exr.length}}</h3>
+       </ion-item>
+       <ion-item-options side="right">
+         <button ion-button (click)="deleteItem(i)"><ion-icon name="trash"></ion-icon>Delete</button>
+         <button ion-button (click)="edItem(i)"><ion-icon name="create"></ion-icon>Edit</button>
+       </ion-item-options>
+     </ion-item-sliding>
   </ion-list>
+
   <ion-fab bottom right>
-    <button ion-fab mini (click)="addComplexExr()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab mini (click)="addComplexExr()" color = "secondary"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

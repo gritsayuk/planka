@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationActionType, ILocalNotification  } from '@ionic-native/local-notifications';
+import { TranslateService } from '@ngx-translate/core';
 
-//import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
 @Component({
@@ -16,7 +17,12 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              private localNotifications: LocalNotifications,
+              private alertCtrl: AlertController,
+              private translate: TranslateService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -26,15 +32,44 @@ export class MyApp {
     ];
 
   }
+  initTranslate () {
+    //this.translate.addLangs(["en"]);
+    this.translate.setDefaultLang("en");
 
+    let browserLang = this.translate.getBrowserLang();
+    //this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    this.translate.use('en');
+  }
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      this.initTranslate ();
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // Schedule a single notification
+      this.localNotifications.on('click').subscribe(res => {
+        let msg = res.data ? res.data.mydata : '';
+        //this.showAlert(res.title, res.text, msg);
+      });
+
+      this.localNotifications.on('trigger').subscribe(res => {
+        let msg = res.data ? res.data.mydata : '';
+        //this.showAlert(res.title, res.text, msg);
+      });
+
+      this.recurringNotification();
     });
   }
+
+  recurringNotification() {
+  this.localNotifications.schedule({
+    id: 22,
+    title: 'Recurring',
+    text: 'Simons Recurring Notification',
+    trigger: { every: ELocalNotificationTriggerUnit.DAY }
+  });
+}
 
   openPage(page) {
     // Reset the content nav to have just this page

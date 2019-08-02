@@ -1,9 +1,3 @@
-<!--
-  Generated template for the AddComplecxExercisesPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <ion-title>AddComplecxExercises</ion-title>
@@ -11,5 +5,53 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-item>
+    <ion-label color="primary">{{'AddComplecxExercisesPage.NameComplex' | translate}}</ion-label>
+    <ion-input placeholder="Name Complex" [(ngModel)]="ComplExr.nameComplexExr"></ion-input>
+  </ion-item>
+  <div>
+    <ion-item>
+      <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>
+      <ion-input placeholder="Pause" [(ngModel)]="ComplExr.pause"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary">{{'AddComplecxExercisesPage.Notification' | translate}}</ion-label>
+        <ion-input placeholder="Notification" [(ngModel)]="ComplExr.notification"></ion-input>
+    </ion-item>
+    <ion-item>
+          <ion-label color="primary">{{'AddComplecxExercisesPage.Time' | translate}}</ion-label>
+          <ion-input placeholder="Time" [(ngModel)]="ComplExr.notificationTime"></ion-input>
+    </ion-item>
+  </div>
+  <ion-list *ngIf="ComplExr.Exr.length > 0" reorder="true" (ionItemReorder)="itemReorder($event)">
+    <ion-item-sliding *ngFor="let item of ComplExr.Exr; let i = index">
+      <ion-item>
+          <ion-label color="primary">
+            <tr>
+              <td>
+                <img src="{{item.imageExr}}" class = 'imgExr'>
+              </td>
+              <td>
+                <h1>{{item.type}}</h1>
+              </td>
+              <td>
+                <h2><ion-datetime  pickerFormat="m:s" [(ngModel)]="item.timeStr"></ion-datetime></h2>
+              </td>
+            </tr>
+          </ion-label>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button (click)="deleteItem(i)"><ion-icon name="trash"></ion-icon>Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
+
+    <ion-item>
+        <button ion-button color="primary" (click)="presentActionSheet()">Add Exercise</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button color="primary" (click)="Save()">Save</button>
+      <button ion-button color="primary" (click)="Cancel()">Cancel</button>
+    </ion-item>
 </ion-content>
