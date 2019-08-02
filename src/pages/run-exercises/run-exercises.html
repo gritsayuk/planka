@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>runExercises</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-card   *ngFor="let item of listExr.Exr; let i = index" (click)="runExr (item)">
+      <h1>{{item.typeExt}}</h1>
+      <h3>Count: {{item.time}}</h3>
+    </ion-card>
+  </ion-list>
+</ion-content>

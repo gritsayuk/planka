@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Timer</h3>
+
+  <h1>
+    {{displayTime}}
+  </h1>
+
+  <button ion-button secondary (click)="startTimer()">Start</button>
+  <button ion-button secondary (click)="pauseTimer()">Pause</button>
+  <button ion-button secondary (click)="resumeTimer()">Resume</button>
+</ion-content>
