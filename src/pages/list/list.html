@@ -12,8 +12,8 @@
           <!--<ion-title>StartPage</ion-title>-->
         </td>
         <td class = "icon-edit">
-          <ion-icon name = "create" (click) = "editReorderItems()" *ngIf = "!reorderItems" color = "editred"></ion-icon>
-          <ion-icon name = "checkmark" (click) = "editReorderItems()" *ngIf = "reorderItems" color = "editred"></ion-icon>
+          <ion-icon name = "create" (click) = "editReorderItems()" *ngIf = "!reorderItems" color = "dark"></ion-icon>
+          <ion-icon name = "checkmark" (click) = "editReorderItems()" *ngIf = "reorderItems" color = "dark"></ion-icon>
         </td>
       </tr>
     </table>
@@ -23,7 +23,7 @@
 <ion-content>
    <ion-list *ngIf="listExr.length > 0" side = "end" reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
      <ion-item-sliding *ngFor="let item of listExr; let i = index" >
-       <ion-item (click)="runExr (item)">
+       <ion-item (click)="runExr (item)" (onPressing)="alert('onPressing')" >
             <h1>{{item.nameComplexExr}}</h1>
             <h3>Count: {{item.Exr.length}}</h3>
        </ion-item>
@@ -35,6 +35,6 @@
   </ion-list>
 
   <ion-fab bottom right>
-    <button ion-fab mini (click)="addComplexExr()" color = "secondary"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab mini (click)="addComplexExr()" color = "dark"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

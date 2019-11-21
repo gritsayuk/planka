@@ -14,14 +14,14 @@
       <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>
       <ion-input placeholder="Pause" [(ngModel)]="ComplExr.pause"></ion-input>
     </ion-item>
-    <ion-item>
+    <!--ion-item>
         <ion-label color="primary">{{'AddComplecxExercisesPage.Notification' | translate}}</ion-label>
         <ion-input placeholder="Notification" [(ngModel)]="ComplExr.notification"></ion-input>
     </ion-item>
     <ion-item>
           <ion-label color="primary">{{'AddComplecxExercisesPage.Time' | translate}}</ion-label>
           <ion-input placeholder="Time" [(ngModel)]="ComplExr.notificationTime"></ion-input>
-    </ion-item>
+    </ion-item-->
   </div>
   <ion-list *ngIf="ComplExr.Exr.length > 0" reorder="true" (ionItemReorder)="itemReorder($event)">
     <ion-item-sliding *ngFor="let item of ComplExr.Exr; let i = index">
@@ -46,12 +46,20 @@
     </ion-item-sliding>
   </ion-list>
 
-
-    <ion-item>
-        <button ion-button color="primary" (click)="presentActionSheet()">Add Exercise</button>
-    </ion-item>
-    <ion-item>
-      <button ion-button color="primary" (click)="Save()">Save</button>
-      <button ion-button color="primary" (click)="Cancel()">Cancel</button>
-    </ion-item>
-</ion-content>
+<div>
+  <tr class = "button-1">
+    <td  colspan=3>
+      <button ion-button color="light" (click)="presentActionSheet()" class = "button-1">Add Exercise</button>
+    </td>
+  </tr>
+  <tr>
+    <td  class = "button-2" colspan=1>
+      <button ion-button color="light" (click)="Save()" class = "button-1">Save</button>
+    </td>
+    <td class = "button-space" colspan=1></td>
+    <td  class = "button-2" colspan=1>
+      <button ion-button color="light" (click)="Cancel()" class = "button-1">Cancel</button>
+    </td>
+  </tr>
+</div> 
+  </ion-content>

@@ -17,7 +17,7 @@ export class Constants {
     },{
       time: 15000,
       type: "PlankaLeft",
-      imageExr: "../../assets/Exr/exr-simple.png"
+      imageExr: "../../assets/Exr/exr-left.png"
     },
     ]
   }, {
@@ -25,7 +25,7 @@ export class Constants {
     Exr: [{
       time: 15000,
       type: "PlankaSimple",
-      imageExr: ""
+      imageExr: "../../assets/Exr/exr-simple.png"
     },{
       time: 15000,
       type: "PlankaRigth",
@@ -33,7 +33,7 @@ export class Constants {
     },{
       time: 15000,
       type: "PlankaLeft",
-      imageExr: "../../assets/Exr/exr-simple.png"
+      imageExr: "../../assets/Exr/exr-left.png"
     },{
       time: 15000,
       type: "PlankaCubit",

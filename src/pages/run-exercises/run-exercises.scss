@@ -6,7 +6,10 @@ page-run-exercises {
     width: 100%;
   }
   .button-2 {
-    width: 50%;
+    width: 30%;
+  }
+  .button-space {
+    width: 5%;
   }
   .displayTime {
     font-size: 7rem;
@@ -15,5 +18,15 @@ page-run-exercises {
   }
   .displayTimeLable {
     font-size: 1.5rem
+  }
+  .imgExr {
+    width: 60px;
+    margin-right: 20px;
+  }
+  .tbl-run-exr {
+    width: 100%
+  }
+  .tbl-td-run-exr {
+    width: 50%
   }
 }
