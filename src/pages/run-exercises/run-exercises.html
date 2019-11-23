@@ -5,7 +5,15 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngIf="listExrDone.length > 0">
+  <table>
+  <tr>
+    <td *ngFor="let item of listExrDone; let i = index">
+        <img src="{{item.imageExr}}" class = 'imgExrOK'>
+    </td>
+  </tr>
+</table>
+
+  <!--ion-list *ngIf="listExrDone.length > 0">
     <ion-item   *ngFor="let item of listExrDone; let i = index">
         <tr>
             <td>
@@ -17,7 +25,7 @@
             </td>
         </tr>
     </ion-item>
-  </ion-list>
+  </ion-list-->
 
   <div >
     <h1 *ngIf="ExrRun.type">
