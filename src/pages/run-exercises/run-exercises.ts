@@ -9,7 +9,7 @@ export class RunExercisesPage {
   listExr: any = [];
   listExrDone: any = [];
   ExrRun: any = {}
-//Timer
+
   timeInSeconds:any;
   time:any;
   runTimer:any;
@@ -19,7 +19,8 @@ export class RunExercisesPage {
   displayTime:any;
   displayTimePreStart:number = -1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams) {
     this.listExr = JSON.parse(JSON.stringify(navParams.data));
   }
   moveExr () {
@@ -38,7 +39,7 @@ export class RunExercisesPage {
     this.initTimer();
     this.startTimer();
   }
-//Timer
+
   Stop () {
     this.ExrRun = {}
     this.listExrDone = [];
@@ -114,11 +115,11 @@ export class RunExercisesPage {
     var milSeconds = sec_num - (hours * 3600*1000) - (minutes * 60*1000)-seconds*1000;
 
     var displayStr = '';
-    var hoursString = '';
+    //var hoursString = '';
     var minutesString = '';
     var secondsString = '';
     var milSecondsString = '';
-    hoursString = (hours < 10) ? "0" + hours : hours.toString();
+    //hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
     //milSecondsString = milSeconds === 0 ? "000" : milSeconds.toString();
@@ -130,6 +131,4 @@ export class RunExercisesPage {
   Close() {
     this.navCtrl.pop();
   }
-
-
 }

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+      <table class="header-tbl">
+          <tr >
+            <td>
+              <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+              </button>
+            </td>
+            <td>
+              <ion-title>{{'Setings.Title' | translate}}</ion-title>
+            </td>
+            <td class = "icon-close">
+              <ion-icon name = "close" (click) = "Close()"></ion-icon>
+            </td>
+          </tr>
+        </table>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label color="primary">{{'Setings.Language' | translate}}</ion-label>
+        <ion-select placeholder="{{'Setings.Language' | translate}}" interface="popover" mode="ios" [(ngModel)]="language" (ionChange)="onChangeLanguage($event)">
+            <ion-option value="en">English</ion-option>
+            <ion-option value="ru">Русский</ion-option>
+            <ion-option value="uk">Українська</ion-option>
+          </ion-select>
+    </ion-item>
+</ion-content>

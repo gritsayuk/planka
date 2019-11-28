@@ -1,1 +1,50 @@
+{
+    "M_LIST": "Тренировки",
+    "M_SETINGS": "Настройки",
+  
+     "StartPage": {
+      "Title": "Тренировки",
+      "Delete": "Удалить",
+      "Edit": "Изменить",
+      "Count": "Количество"
+    },
+    "RunPage": {
+      "Start": "Начать",
+      "Close": "Закрыть",
+      "Pause": "Приостановить",
+      "Continue": "Продолжить",
+      "displayTime": "(min:sec:msec)",
+      "Stop": "Остановить",
+      "Time": "Время"
+    },
+    "AddComplecxExercisesPage": {
+      "AddComplecxExercises": "Новая Тренировка",
+      "NameComplex": "Название",
+      "Pause": "Задержка",
+      "Notification": "Напоминание",
+      "Time": "Длительность",
+      "Delete": "Удалить",
+      "Add": "Добавить",
+      "Save": "Сохранить",
+      "Cancel": "Отмена",
+      "Alert1": "Укажите пожалуйста название тренировки!"
+    },
+    "Setings": {
+      "Title": "Настройки",
+      "Language": "Язык"
+    },
+    "Menu": {
+      "List": "Тренировки",
+      "Setings": "Настройки"
+    },
+    "ListExr": {
+      "Simple": "Обычная",
+      "Left": "Левая",
+      "Right": "Правая",
+      "Cubit": "Локтевая",
+      "Cancel": "Отмена",
+      "Title": "Тренировки"
+    }
 
+  }
+  

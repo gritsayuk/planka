@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RunExercisesPage} from '../run-exercises/run-exercises';
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddComplecxExercisesPage } from '../add-complecx-exercises/add-complecx-exercises';
 import { Storage } from '@ionic/storage';
 import { Constants } from '../../app/app.constants';
@@ -10,18 +11,37 @@ import { Constants } from '../../app/app.constants';
   templateUrl: 'list.html'
 })
 export class ListPage {
+  AppLanguage: any;
   listExr: any = [];
   reorderItems: boolean = false;
   constructor(public navCtrl: NavController,
+              public splashScreen: SplashScreen,
               public navParams: NavParams,
               private storage: Storage) {
+  }
+  ionViewDidEnter () {
+    setTimeout(() => {this.splashScreen.hide();},500);
   }
   ionViewWillEnter () {
     this.storage.get("listExr")
       .then(res => {
-        this.listExr = !!res ? res : Constants.DefaultListExr;
-        console.log(this.listExr);
-      });
+        if (!!res) {
+          this.listExr = res;
+        } else {
+          setTimeout(() => {
+            this.storage.get("AppLanguage")
+              .then(resL => {
+                this.AppLanguage = resL;
+                this.listExr = !!res ? res : Constants["DefaultListExr"+resL];
+
+                if(typeof this.listExr == 'undefined') {
+                  this.listExr = !!res ? res : Constants["DefaultListExr"];
+                }
+                this.storage.set("listExr",this.listExr);
+              });
+           });
+      }
+    });
   }
 
   editReorderItems () {

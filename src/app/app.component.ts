@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController } from 'ionic-angular';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LocalNotifications, ELocalNotificationTriggerUnit, ILocalNotificationActionType, ILocalNotification  } from '@ionic-native/local-notifications';
+/*import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';*/
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 import { ListPage } from '../pages/list/list';
+import { SetingsPage } from '../pages/setings/setings';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,41 +16,56 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = ListPage;
-
   pages: Array<{title: string, component: any}>;
+  transtateList: any;
+  language: any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private localNotifications: LocalNotifications,
-              private alertCtrl: AlertController,
-              private translate: TranslateService) {
+              //private localNotifications: LocalNotifications,
+              private translate: TranslateService,
+              private storage: Storage) {
+    this.initTranslate ();
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      //{ title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
-
   }
   initTranslate () {
-    //this.translate.addLangs(["en"]);
-    this.translate.setDefaultLang("en");
-
-    let browserLang = this.translate.getBrowserLang();
-    //this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
-    this.translate.use('en');
+    
+    this.storage.get("AppLanguage")
+    .then(res => {
+      if (!!res) {
+        this.language = res;
+      } else {
+        let browserLang = this.translate.getBrowserLang();
+        console.log("!!!Lang",browserLang);
+        this.language = browserLang.match(/en|ru|uk/) ? browserLang : 'en';
+        this.storage.set("AppLanguage",this.language)
+      }
+      this.translate.setDefaultLang(this.language);
+      this.translate.use(this.language);
+      //Формируем меню
+      this.translate.get('Menu').subscribe(
+        value => {
+          this.transtateList = value;
+          this.pages = [
+            //{ title: 'Home', component: HomePage },
+            /*{ title: this.transtateList.List, component: ListPage },
+            { title: this.transtateList.Setings, component: SetingsPage }*/
+            { title: "M_LIST", component: ListPage },
+            { title: "M_SETINGS", component: SetingsPage }
+          ];
+        });    
+      });
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      this.initTranslate ();
+      //this.initTranslate ();
 
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.splashScreen.hide();
 
       // Schedule a single notification
-      this.localNotifications.on('click').subscribe(res => {
+      /*this.localNotifications.on('click').subscribe(res => {
         let msg = res.data ? res.data.mydata : '';
         //this.showAlert(res.title, res.text, msg);
       });
@@ -56,24 +73,22 @@ export class MyApp {
       this.localNotifications.on('trigger').subscribe(res => {
         let msg = res.data ? res.data.mydata : '';
         //this.showAlert(res.title, res.text, msg);
-      });
+      });*/
 
-      this.recurringNotification();
+     // this.recurringNotification();
     });
   }
 
-  recurringNotification() {
+ /* recurringNotification() {
   this.localNotifications.schedule({
     id: 22,
     title: 'Recurring',
     text: 'Simons Recurring Notification',
     trigger: { every: ELocalNotificationTriggerUnit.DAY }
   });
-}
+}*/
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 }

@@ -1,18 +1,45 @@
 {
+  "M_LIST": "Trainings",
+  "M_SETINGS": "Setings",
+
   "StartPage": {
-    "Title": "Exercises"
+    "Title": "Trainings",
+    "Delete": "Delete",
+    "Edit": "Edit",
+    "Count": "Count"
   },
   "RunPage": {
     "Start": "Start",
     "Close": "Close",
     "Pause": "Pause",
     "Continue": "Continue",
-    "displayTime": "(min:sec:msec)"
+    "displayTime": "(min:sec:msec)",
+    "Stop": "Stop",
+    "Time": "Time"
   },
   "AddComplecxExercisesPage": {
-    "NameComplex": "Name Complex",
-    "Pause": "Pause",
+    "AddComplecxExercises": "New training",
+    "NameComplex": "Name",
+    "Pause": "Delay",
     "Notification": "Notification",
-    "Time": "Time"
+    "Time": "Time",
+    "Delete": "Delete",
+    "Add": "Add",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Alert1": "Please set name training!"
+  },
+  "Setings": {
+    "Title": "Setings",
+    "Language": "Language"
+  },
+  "ListExr": {
+    "Simple": "Simple",
+    "Left": "Left",
+    "Right": "Right",
+    "Cubit": "Cubit",
+    "Cancel": "Cancel",
+    "Title": "Exersises"
   }
+
 }

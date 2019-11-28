@@ -1,0 +1,11 @@
+{
+    "android": {
+      "release": {
+        "keystore": "./certificates/planka-chipmen-key.keystore",
+        "storePassword": "Planka220581",
+        "alias": "planka",
+        "password" : "Planka220581",
+        "keystoreType": ""
+      }
+    }
+  }

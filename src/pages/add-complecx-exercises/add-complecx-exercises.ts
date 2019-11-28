@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ActionSheetController, DateTime } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { Constants } from '../../app/app.constants';
 import { Storage } from '@ionic/storage';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-
+import { TranslateService } from '@ngx-translate/core';
+import { AlertController, Content } from 'ionic-angular';
 
 @Component({
   selector: 'page-add-complecx-exercises',
@@ -11,6 +11,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 })
 export class AddComplecxExercisesPage {
 
+  @ViewChild(Content) contentArea: Content;
   ComplExr:any = {
   nameComplexExr: "",
   pause: 3,
@@ -21,22 +22,36 @@ export class AddComplecxExercisesPage {
   exers: any = [];
   stardDT: number;
   tzoffset:number;
+  transtateList: any;
+  translateExer: any;
+  actionSheetOption: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public actionSheetController: ActionSheetController,
-              private storage: Storage) {
-    console.log("navParams.data.index: ",navParams.data.indx)
+              private storage: Storage,
+              private translate: TranslateService,
+              public alertController: AlertController) {
+    translate.get('AddComplecxExercisesPage')
+      .subscribe(value => {
+          this.transtateList = value;
+        });
+
     this.tzoffset = (new Date("01.01.2000")).getTimezoneOffset() * 60000; //offset in milliseconds
     this.stardDT = Date.parse(new Date("01.01.2000").toDateString()) - this.tzoffset;
-
-    if (!!navParams.data.indx) {
+    if (navParams.data['indx'] >= 0) {
       this.editIndex = navParams.data.indx;
       this.storage.get("listExr")
         .then( res => {
           this.ComplExr = this.parseTime(res[this.editIndex], true);
         });
     }
+  }
+  ionViewWillEnter() {
+    this.translate.get('ListExr').subscribe(
+      value => {
+        this.translateExer = value;
+      });
   }
   parseTime(item, way) {
     for (let i = 0; i < item.Exr.length; i++) {
@@ -59,54 +74,58 @@ export class AddComplecxExercisesPage {
   }
 
   presentActionSheet() {
-      let actionSheetOption: any = {
-        title: 'Exersises',
+    if (!this.actionSheetOption) {
+      this.actionSheetOption = {
+        title: this.translateExer["Title"],
         buttons: Constants.ListExr
       };
-      for (let i = 0; i<actionSheetOption.buttons.length; i++) {
-        actionSheetOption.buttons[i].handler = () => {
-          this.AddExr(actionSheetOption.buttons[i])
+      for (let i = 0; i<this.actionSheetOption.buttons.length; i++) {
+        this.actionSheetOption.buttons[i].text = this.translateExer[this.actionSheetOption.buttons[i].type];
+        this.actionSheetOption.buttons[i].handler = () => {
+          this.AddExr(this.actionSheetOption.buttons[i])
         }
       }
-      actionSheetOption.buttons.push({
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      })
-      let actionSheet:any = this.actionSheetController.create(actionSheetOption);
-
-
+    }
+    this.actionSheetOption.buttons.push({
+      text: this.translateExer["Cancel"],
+      icon: 'close',
+      role: 'cancel'//,
+      //handler: () => {}
+    })
+    let actionSheet:any = this.actionSheetController.create(this.actionSheetOption);
     actionSheet.present();
   }
   AddExr(item) {
     let itemSrorage = JSON.parse(JSON.stringify(item))
     itemSrorage.handler = null;
     itemSrorage.timeStr = this.getTime(itemSrorage.time);
-    console.log(JSON.parse(JSON.stringify(itemSrorage)));
-    console.log(item);
 
     this.ComplExr.Exr.push(itemSrorage);
+    setTimeout(() => {this.contentArea.scrollToBottom()});
   }
 
   Save() {
-    try {
-      this.storage.get("listExr").then(res => {
-        let resArr: any = [];
-        resArr = !!res ? res : Constants.DefaultListExr;
-        if (this.editIndex > -1) {
-          resArr[this.editIndex] = this.parseTime(this.ComplExr, false);
-        } else {
-          resArr.push(this.parseTime(this.ComplExr, false));
-        }
-        this.storage.set ("listExr", resArr);
-        this.navCtrl.pop();
-      });
-    }
-    catch (e) {
-      console.log(">>>Error",e);
+      if (this.ComplExr.nameComplexExr == "") {
+        let pAlert = this.alertController.create({
+          //title: 'Low battery',
+          subTitle: this.transtateList.Alert1,
+          buttons: ['OK']
+        });
+    
+        pAlert.present();
+        //alert (this.transtateList.Alert1);
+      } else {
+        this.storage.get("listExr").then(res => {
+          let resArr: any = [];
+          resArr = !!res ? res : Constants.DefaultListExr;
+          if (this.editIndex > -1) {
+            resArr[this.editIndex] = this.parseTime(this.ComplExr, false);
+          } else {
+            resArr.push(this.parseTime(this.ComplExr, false));
+          }
+          this.storage.set ("listExr", resArr);
+          this.navCtrl.pop();
+        });
     }
   }
 

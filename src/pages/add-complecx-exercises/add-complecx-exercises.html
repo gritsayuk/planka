@@ -1,18 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>AddComplecxExercises</ion-title>
+    <ion-title>{{'AddComplecxExercisesPage.AddComplecxExercises' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <ion-item>
-    <ion-label color="primary">{{'AddComplecxExercisesPage.NameComplex' | translate}}</ion-label>
-    <ion-input placeholder="Name Complex" [(ngModel)]="ComplExr.nameComplexExr"></ion-input>
-  </ion-item>
-  <div>
+      <ion-label color="primary">{{'AddComplecxExercisesPage.NameComplex' | translate}}</ion-label>
+      <ion-input placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExr"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>
-      <ion-input placeholder="Pause" [(ngModel)]="ComplExr.pause"></ion-input>
+      <ion-input placeholder="{{'AddComplecxExercisesPage.Pause' | translate}}" [(ngModel)]="ComplExr.pause"></ion-input>
     </ion-item>
     <!--ion-item>
         <ion-label color="primary">{{'AddComplecxExercisesPage.Notification' | translate}}</ion-label>
@@ -22,9 +21,8 @@
           <ion-label color="primary">{{'AddComplecxExercisesPage.Time' | translate}}</ion-label>
           <ion-input placeholder="Time" [(ngModel)]="ComplExr.notificationTime"></ion-input>
     </ion-item-->
-  </div>
-  <ion-list *ngIf="ComplExr.Exr.length > 0" reorder="true" (ionItemReorder)="itemReorder($event)">
-    <ion-item-sliding *ngFor="let item of ComplExr.Exr; let i = index">
+  <ion-list reorder="true" (ionItemReorder)="itemReorder($event)">
+      <ion-item-sliding *ngFor="let item of ComplExr.Exr; let i = index">
       <ion-item>
           <ion-label color="primary">
             <tr>
@@ -32,7 +30,7 @@
                 <img src="{{item.imageExr}}" class = 'imgExr'>
               </td>
               <td>
-                <h1>{{item.type}}</h1>
+                <h1>{{item.text}}</h1>
               </td>
               <td>
                 <h2><ion-datetime  pickerFormat="m:s" [(ngModel)]="item.timeStr"></ion-datetime></h2>
@@ -41,25 +39,22 @@
           </ion-label>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button (click)="deleteItem(i)"><ion-icon name="trash"></ion-icon>Delete</button>
+        <button ion-button (click)="deleteItem(i)"><ion-icon name="trash"></ion-icon>{{'AddComplecxExercisesPage.Delete' | translate}}</button>
       </ion-item-options>
     </ion-item-sliding>
+  <!--ion-fab bottom right>
+    <button ion-fab mini (click)="presentActionSheet()" color = "light"><ion-icon name="add"></ion-icon></button>
+  </ion-fab-->
   </ion-list>
-
-<div>
-  <tr class = "button-1">
-    <td  colspan=3>
-      <button ion-button color="light" (click)="presentActionSheet()" class = "button-1">Add Exercise</button>
-    </td>
-  </tr>
+  <button ion-button color="light" (click)="presentActionSheet()" class = "button-1">{{'AddComplecxExercisesPage.Add' | translate}}</button>
+</ion-content>
+<ion-footer>
   <tr>
     <td  class = "button-2" colspan=1>
-      <button ion-button color="light" (click)="Save()" class = "button-1">Save</button>
+      <button ion-button color="light" (click)="Save()" class = "button-3">{{'AddComplecxExercisesPage.Save' | translate}}</button>
     </td>
-    <td class = "button-space" colspan=1></td>
     <td  class = "button-2" colspan=1>
-      <button ion-button color="light" (click)="Cancel()" class = "button-1">Cancel</button>
+      <button ion-button color="light" (click)="Cancel()" class = "button-3">{{'AddComplecxExercisesPage.Cancel' | translate}}</button>
     </td>
   </tr>
-</div> 
-  </ion-content>
+</ion-footer>

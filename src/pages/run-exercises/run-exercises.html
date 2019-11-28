@@ -47,19 +47,17 @@
 
   <div>
     <div *ngIf="listExr.Exr.length <= 0 && listExrDone.length > 0 && !ExrRun.type">
-        <button ion-button color="primary" (click)="Close()"  color="secondary" class = "button-1">{{ "RunPage.Close" | translate}}</button>
+        <button ion-button color="light" (click)="Close()"  class = "button-1">{{ "RunPage.Close" | translate}}</button>
     </div>
     <table class = "button-tbl">
     <tr *ngIf="!!ExrRun.type && hasStarted">
       <td class = "button-2">
+          <button ion-button color="light" (click)="Stop()" class = "button-1">{{"RunPage.Stop" | translate}}</button>
+      </td>
+      <td class = "button-space"></td>
+      <td class = "button-2">
         <button ion-button color="light" (click)="pauseTimer()" *ngIf="runTimer && hasStarted"  class = "button-1">{{"RunPage.Pause" | translate}}</button>
         <button ion-button color="light" (click)="resumeTimer()" *ngIf="!runTimer && hasStarted"  class = "button-1">{{"RunPage.Continue" | translate}}</button>
-      </td>
-      <td class = "button-space">
-
-      </td>
-      <td class = "button-2">
-        <button ion-button color="light" (click)="Stop()"  class = "button-1">Stop</button>
       </td>
     </tr>
     </table>
@@ -72,8 +70,8 @@
           <img src="{{item.imageExr}}" class = 'imgExr'>
         </td>
         <td>
-          <h1>{{item.type}}</h1>
-          <h3>Count: {{item.time}}</h3>
+          <h1>{{item.text}}</h1>
+          <h3>{{"RunPage.Time" | translate}}: {{ item.timeStr | date :  "m:s" }}</h3>   
         </td>
       </tr>
     </ion-item>

@@ -1,0 +1,45 @@
+{
+    "M_LIST": "Тренування",
+    "M_SETINGS": "Налаштування",
+
+    "StartPage": {
+      "Title": "Тренування",
+      "Delete": "Видалити",
+      "Edit": "Змінити",
+      "Count": "Кількість"
+    },
+    "RunPage": {
+      "Start": "Почати",
+      "Close": "Вийти",
+      "Pause": "Призупинити",
+      "Continue": "Продовжити",
+      "displayTime": "(min:sec:msec)",
+      "Stop": "Зупинити",
+      "Time": "Час"
+    },
+    "AddComplecxExercisesPage": {
+      "AddComplecxExercises": "Нове тренування",
+      "NameComplex": "Назва",
+      "Pause": "Затримка",
+      "Notification": "Нагадування",
+      "Time": "Тривалість",
+      "Delete": "Видалити",
+      "Add": "Додати",
+      "Save": "Зберегти",
+      "Cancel": "Відмінити",
+      "Alert1": "Введіть будьласка назву тренування!"
+    },
+    "Setings": {
+      "Title": "Налаштування",
+      "Language": "Мова"
+    },
+    "ListExr": {
+      "Simple": "Звичайна",
+      "Left": "Ліва",
+      "Right": "Права",
+      "Cubit": "Локтьова",
+      "Cancel": "Відмінити",
+      "Title": "Тренування"
+    }
+  }
+  
