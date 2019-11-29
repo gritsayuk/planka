@@ -30,6 +30,7 @@ export class RunExercisesPage {
     if (!!this.listExr.Exr && this.listExr.Exr.length > 0) {
       this.ExrRun = this.listExr.Exr[0];
       this.listExr.Exr.splice(0,1);
+      this.timeInSeconds = 0;
     } else {
       this.ExrRun = {}
     }
