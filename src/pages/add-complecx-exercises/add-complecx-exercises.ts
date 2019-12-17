@@ -4,6 +4,8 @@ import { Constants } from '../../app/app.constants';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertController, Content } from 'ionic-angular';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
 
 @Component({
   selector: 'page-add-complecx-exercises',
@@ -30,12 +32,14 @@ export class AddComplecxExercisesPage {
               public navParams: NavParams,
               public actionSheetController: ActionSheetController,
               private storage: Storage,
+              private admobFree: AdMobFree,
               private translate: TranslateService,
               public alertController: AlertController) {
     translate.get('AddComplecxExercisesPage')
       .subscribe(value => {
           this.transtateList = value;
         });
+    
 
     this.tzoffset = (new Date("01.01.2000")).getTimezoneOffset() * 60000; //offset in milliseconds
     this.stardDT = Date.parse(new Date("01.01.2000").toDateString()) - this.tzoffset;
@@ -53,6 +57,20 @@ export class AddComplecxExercisesPage {
         this.translateExer = value;
       });
   }
+  ionViewDidEnter() {
+    this.showBannerAd();
+  }
+  showBannerAd() {
+    let bannerConfig: AdMobFreeBannerConfig = {
+      //isTesting: true, // Remove in production
+      autoShow: true,
+      id: "ca-app-pub-7766893277450035/4185231751"
+    };
+    this.admobFree.banner.config(bannerConfig);
+    this.admobFree.banner.prepare().then(() => {
+      // success
+    }).catch(e => alert(e));
+}
   parseTime(item, way) {
     for (let i = 0; i < item.Exr.length; i++) {
       if (way) {

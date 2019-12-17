@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
+
 import { RunExercisesPage} from '../run-exercises/run-exercises';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddComplecxExercisesPage } from '../add-complecx-exercises/add-complecx-exercises';
@@ -16,11 +19,13 @@ export class ListPage {
   reorderItems: boolean = false;
   constructor(public navCtrl: NavController,
               public splashScreen: SplashScreen,
+              private admobFree: AdMobFree,
               public navParams: NavParams,
               private storage: Storage) {
   }
   ionViewDidEnter () {
     setTimeout(() => {this.splashScreen.hide();},500);
+    setTimeout(() => {this.showBannerAd();},1000);
   }
   ionViewWillEnter () {
     this.storage.get("listExr")
@@ -43,7 +48,17 @@ export class ListPage {
       }
     });
   }
-
+  showBannerAd() {
+    let bannerConfig: AdMobFreeBannerConfig = {
+      //isTesting: true, // Remove in production
+      autoShow: true,
+      id: "ca-app-pub-7766893277450035/1363611389"
+    };
+    this.admobFree.banner.config(bannerConfig);
+    this.admobFree.banner.prepare().then(() => {
+      // success
+    }).catch(e => alert(e));
+}
   editReorderItems () {
     this.reorderItems = !this.reorderItems;
   }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
 
 @Component({
   selector: 'page-run-exercises',
@@ -19,10 +21,25 @@ export class RunExercisesPage {
   displayTime:any;
   displayTimePreStart:number = -1;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
+              private admobFree: AdMobFree, 
               public navParams: NavParams) {
     this.listExr = JSON.parse(JSON.stringify(navParams.data));
   }
+  ionViewDidEnter() {
+    this.showBannerAd();
+  }
+  showBannerAd() {
+    let bannerConfig: AdMobFreeBannerConfig = {
+      //isTesting: true, // Remove in production
+      autoShow: true,
+      id: "ca-app-pub-7766893277450035/4185231751"
+    };
+    this.admobFree.banner.config(bannerConfig);
+    this.admobFree.banner.prepare().then(() => {
+      // success
+    }).catch(e => alert(e));
+}
   moveExr () {
     if (!!this.ExrRun.type) {
       this.listExrDone.push(this.ExrRun);
