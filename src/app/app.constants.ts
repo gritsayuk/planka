@@ -138,7 +138,7 @@ export class Constants {
     },
     ]
   }, {
-    nameComplexExr: "Профисиональная",
+    nameComplexExr: "Профессиональная",
     Exr: [{
       text: "Локтевая",
       time: 15000,
@@ -195,10 +195,10 @@ export class Constants {
   }, {
     nameComplexExr: "Професійна",
     Exr: [{
-      text: "Локтьова",
+      text: "ліктьова",
       time: 15000,
       timeStr: "2000-01-01T00:00:15Z",
-      type: "Локтьова",
+      type: "ліктьова",
       imageExr: "../../assets/Exr/exr-cubit.png"
     },{
       text: "Права",

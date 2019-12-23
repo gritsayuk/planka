@@ -38,31 +38,10 @@
       <!--div *ngIf = "displayTimePreStart === -1" class = "displayTimeLable" text-center no-margin no-padding>
         {{ "RunPage.displayTime" | translate }}
       </div-->
-      <table class='tbl-run-exr'><tr><td class='tbl-td-run-exr' text-right><img src="{{ExrRun.imageExr}}" class = 'imgExr'></td><td class='tbl-td-run-exr' ><h3 text-left>{{ExrRun.type}}</h3></td></tr></table>
+      <table class='tbl-run-exr'><tr><td class='tbl-td-run-exr' text-right><img src="{{ExrRun.imageExr}}" class = 'imgExr'></td><td class='tbl-td-run-exr' ><h3 text-left>{{ExrRun.text}}</h3></td></tr></table>
     </h1>
   </div>
-  <div *ngIf="(!ExrRun.type || !hasStarted) && !(listExr.Exr.length <= 0 && listExrDone.length > 0) && displayTimePreStart === -1">
-    <button ion-button color="light" (click)="Run()" class = "button-1" solid block default>{{ "RunPage.Start" | translate}}</button>
-  </div>
-
-  <div>
-    <div *ngIf="listExr.Exr.length <= 0 && listExrDone.length > 0 && !ExrRun.type">
-        <button ion-button color="light" (click)="Close()"  class = "button-1">{{ "RunPage.Close" | translate}}</button>
-    </div>
-    <table class = "button-tbl">
-    <tr *ngIf="!!ExrRun.type && hasStarted">
-      <td class = "button-2">
-          <button ion-button color="light" (click)="Stop()" class = "button-1">{{"RunPage.Stop" | translate}}</button>
-      </td>
-      <td class = "button-space"></td>
-      <td class = "button-2">
-        <button ion-button color="light" (click)="pauseTimer()" *ngIf="runTimer && hasStarted"  class = "button-1">{{"RunPage.Pause" | translate}}</button>
-        <button ion-button color="light" (click)="resumeTimer()" *ngIf="!runTimer && hasStarted"  class = "button-1">{{"RunPage.Continue" | translate}}</button>
-      </td>
-    </tr>
-    </table>
-  </div>
-
+  <!--progress value="0.5">sadfasdfc</progress-->
   <ion-list *ngIf="listExr.Exr.length > 0">
     <ion-item   *ngFor="let item of listExr.Exr; let i = index">
       <tr>
@@ -77,3 +56,26 @@
     </ion-item>
   </ion-list>
 </ion-content>
+<ion-footer>
+    <div *ngIf="(!ExrRun.type || !hasStarted) && !(listExr.Exr.length <= 0 && listExrDone.length > 0) && displayTimePreStart === -1">
+        <button ion-button color="light" (click)="Run()" class = "button-1" solid block default>{{ "RunPage.Start" | translate}}</button>
+    </div>
+
+    <div>
+        <div *ngIf="listExr.Exr.length <= 0 && listExrDone.length > 0 && !ExrRun.type">
+            <button ion-button color="light" (click)="Close()"  class = "button-1">{{ "RunPage.Close" | translate}}</button>
+        </div>
+        <table class = "button-tbl">
+        <tr *ngIf="!!ExrRun.type && hasStarted">
+          <td class = "button-2">
+              <button ion-button color="light" (click)="Stop()" class = "button-1">{{"RunPage.Stop" | translate}}</button>
+          </td>
+          <td class = "button-space"></td>
+          <td class = "button-2">
+            <button ion-button color="light" (click)="pauseTimer()" *ngIf="runTimer && hasStarted"  class = "button-1">{{"RunPage.Pause" | translate}}</button>
+            <button ion-button color="light" (click)="resumeTimer()" *ngIf="!runTimer && hasStarted"  class = "button-1">{{"RunPage.Continue" | translate}}</button>
+          </td>
+        </tr>
+        </table>
+      </div>
+    </ion-footer>
