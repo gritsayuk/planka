@@ -10,8 +10,10 @@ import { Insomnia, } from '@ionic-native/insomnia';
 })
 export class RunExercisesPage {
   listExr: any = [];
+  listExrProgress: any = [];
   listExrDone: any = [];
-  ExrRun: any = {}
+  ExrRun: any = {};
+  ExrRunIndex: number = -1; 
 
   timeInSeconds:any;
   time:any;
@@ -27,23 +29,27 @@ export class RunExercisesPage {
               public navParams: NavParams,
               private insomnia: Insomnia) {
     this.listExr = JSON.parse(JSON.stringify(navParams.data));
+    this.listExrProgress = JSON.parse(JSON.stringify(navParams.data));
   }
   ionViewWillEnter() {
+    //Не выключаем экран
     this.insomnia.keepAwake()
       .then(
         () => console.log('>>>>>>keepAwake success')
       );
   }
+  ionViewDidEnter() {
+    this.showBannerAd();
+  }
   ionViewDidLeave() {
+    //Выключаем экран
     this.insomnia.allowSleepAgain()
       .then(
         () => console.log('>>>>>>allowSleepAgain success')
       );
   }
-  ionViewDidEnter() {
-    this.showBannerAd();
-  }
   showBannerAd() {
+  //Показываем рекламу
     let bannerConfig: AdMobFreeBannerConfig = {
       //isTesting: true, // Remove in production
       autoShow: true,
@@ -54,7 +60,22 @@ export class RunExercisesPage {
       // success
     }).catch(e => alert(e));
 }
+  Run () {
+    this.moveExr ();
+    this.initTimer();
+    this.startTimer();
+  }
+  Close() {
+    this.navCtrl.pop();
+  }
+  Stop () {
+    this.ExrRun = {}
+    this.listExrDone = [];
+    this.listExr = JSON.parse(JSON.stringify(this.navParams.data));
+    this.initTimer();
+  }
   moveExr () {
+    this.ExrRunIndex++;
     if (!!this.ExrRun.type) {
       this.listExrDone.push(this.ExrRun);
     }
@@ -65,18 +86,6 @@ export class RunExercisesPage {
     } else {
       this.ExrRun = {}
     }
-  }
-  Run () {
-    this.moveExr ();
-    this.initTimer();
-    this.startTimer();
-  }
-
-  Stop () {
-    this.ExrRun = {}
-    this.listExrDone = [];
-    this.listExr = JSON.parse(JSON.stringify(this.navParams.data));
-    this.initTimer();
   }
   initTimer() {
     // Pomodoro is usually for 25 minutes
@@ -92,7 +101,6 @@ export class RunExercisesPage {
 
     this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
   }
-
   startTimer(p = !!this.listExr.pause && this.listExr.pause >0 ? this.listExr.pause : -1) {
     this.displayTimePreStart = p;
     if (p >= 0) {
@@ -118,7 +126,10 @@ export class RunExercisesPage {
   resumeTimer() {
     this.startTimer();
   }
-
+  runPercent() {
+    console.log(">>>1",this.listExrProgress);
+    this.listExrProgress.Exr[this.ExrRunIndex]["runPercent"] = (this.listExrProgress.Exr[this.ExrRunIndex].time - this.remainingTime)/this.listExrProgress.Exr[this.ExrRunIndex].time
+  }
   timerTick() {
     setTimeout(() => {
       if (!this.runTimer) { return; }
@@ -126,8 +137,10 @@ export class RunExercisesPage {
       this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
       if (this.remainingTime > 0) {
         this.timerTick();
+        this.runPercent();
       }
       else {
+        this.listExrProgress.Exr[this.ExrRunIndex]["runPercent"] = 1;
         this.moveExr();
         if (!!this.ExrRun.type) {
           this.initTimer();
@@ -160,7 +173,5 @@ export class RunExercisesPage {
     displayStr = minutesString + ':' + secondsString + ':' + milSecondsString;
     return displayStr;
   }
-  Close() {
-    this.navCtrl.pop();
-  }
+
 }

@@ -121,7 +121,17 @@ export class AddComplecxExercisesPage {
     this.ComplExr.Exr.push(itemSrorage);
     setTimeout(() => {this.contentArea.scrollToBottom()});
   }
-
+  getTimeExr() {
+    let allTime: number = 0;
+    for(let i = 0; this.ComplExr.Exr.length> i; i++) {
+      allTime += 1*this.ComplExr["Exr"][i]["time"];
+    }
+    this.ComplExr.allTime = allTime;
+    //this.ComplExr.percentOne = allTime/100;
+    for(let i = 0; this.ComplExr.Exr.length> i; i++) {
+      this.ComplExr["Exr"][i].percent = this.ComplExr["Exr"][i]["time"]*100/allTime;
+    }
+  }
   Save() {
       if (this.ComplExr.nameComplexExr == "") {
         let pAlert = this.alertController.create({
@@ -136,6 +146,7 @@ export class AddComplecxExercisesPage {
         this.storage.get("listExr").then(res => {
           let resArr: any = [];
           resArr = !!res ? res : Constants.DefaultListExr;
+          this.getTimeExr();
           if (this.editIndex > -1) {
             resArr[this.editIndex] = this.parseTime(this.ComplExr, false);
           } else {
