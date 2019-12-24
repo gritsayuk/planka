@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+import { Insomnia, } from '@ionic-native/insomnia';
 
 
 @Component({
@@ -23,8 +24,21 @@ export class RunExercisesPage {
 
   constructor(public navCtrl: NavController,
               private admobFree: AdMobFree, 
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              private insomnia: Insomnia) {
     this.listExr = JSON.parse(JSON.stringify(navParams.data));
+  }
+  ionViewWillEnter() {
+    this.insomnia.keepAwake()
+      .then(
+        () => console.log('>>>>>>keepAwake success')
+      );
+  }
+  ionViewDidLeave() {
+    this.insomnia.allowSleepAgain()
+      .then(
+        () => console.log('>>>>>>allowSleepAgain success')
+      );
   }
   ionViewDidEnter() {
     this.showBannerAd();

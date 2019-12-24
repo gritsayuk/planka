@@ -16,6 +16,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AdMobFree } from '@ionic-native/admob-free'; 
+import { Insomnia } from '@ionic-native/insomnia';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "./assets/i18n/", ".json");
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StatusBar,
     SplashScreen,
     AdMobFree,
+    Insomnia,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     //LocalNotifications,
     HttpClient
