@@ -131,6 +131,7 @@ export class AddComplecxExercisesPage {
     for(let i = 0; this.ComplExr.Exr.length> i; i++) {
       this.ComplExr["Exr"][i].percent = this.ComplExr["Exr"][i]["time"]*100/allTime;
     }
+    console.log(">>>>>this.ComplExr>>>",this.ComplExr);
   }
   Save() {
       if (this.ComplExr.nameComplexExr == "") {
@@ -146,12 +147,12 @@ export class AddComplecxExercisesPage {
         this.storage.get("listExr").then(res => {
           let resArr: any = [];
           resArr = !!res ? res : Constants.DefaultListExr;
-          this.getTimeExr();
           if (this.editIndex > -1) {
             resArr[this.editIndex] = this.parseTime(this.ComplExr, false);
           } else {
             resArr.push(this.parseTime(this.ComplExr, false));
           }
+          this.getTimeExr();
           this.storage.set ("listExr", resArr);
           this.navCtrl.pop();
         });

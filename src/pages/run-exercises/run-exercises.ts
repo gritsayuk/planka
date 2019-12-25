@@ -61,6 +61,12 @@ export class RunExercisesPage {
     }).catch(e => alert(e));
 }
   Run () {
+    if (this.ExrRunIndex != -1) {
+      this.ExrRunIndex = -1;
+      for (let i = 0; i < this.listExrProgress.Exr.length; i++) {
+        this.listExrProgress.Exr[i]["runPercent"] = 0;
+      }
+    }
     this.moveExr ();
     this.initTimer();
     this.startTimer();
@@ -127,7 +133,7 @@ export class RunExercisesPage {
     this.startTimer();
   }
   runPercent() {
-    console.log(">>>1",this.listExrProgress);
+    //console.log(">>>1",this.listExrProgress);
     this.listExrProgress.Exr[this.ExrRunIndex]["runPercent"] = (this.listExrProgress.Exr[this.ExrRunIndex].time - this.remainingTime)/this.listExrProgress.Exr[this.ExrRunIndex].time
   }
   timerTick() {
