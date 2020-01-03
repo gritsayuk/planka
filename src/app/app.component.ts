@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 
 import { ListPage } from '../pages/list/list';
 import { SetingsPage } from '../pages/setings/setings';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 @Component({
   templateUrl: 'app.html'
@@ -52,6 +53,7 @@ export class MyApp {
             /*{ title: this.transtateList.List, component: ListPage },
             { title: this.transtateList.Setings, component: SetingsPage }*/
             { title: "M_LIST", component: ListPage },
+            { title: "M_CALENDAR", component: CalendarPage },
             { title: "M_SETINGS", component: SetingsPage }
           ];
         });    

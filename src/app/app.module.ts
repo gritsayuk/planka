@@ -7,6 +7,7 @@ import { ListPage } from '../pages/list/list';
 import { RunExercisesPage } from '../pages/run-exercises/run-exercises';
 import { AddComplecxExercisesPage } from '../pages/add-complecx-exercises/add-complecx-exercises';
 import { SetingsPage } from '../pages/setings/setings';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +18,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AdMobFree } from '@ionic-native/admob-free'; 
 import { Insomnia } from '@ionic-native/insomnia';
+import { CalendarModule } from "ion2-calendar";
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "./assets/i18n/", ".json");
@@ -28,11 +30,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ListPage,
     RunExercisesPage,
     AddComplecxExercisesPage,
-    SetingsPage
+    SetingsPage,
+    CalendarPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    CalendarModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
@@ -49,7 +53,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ListPage,
     RunExercisesPage,
     AddComplecxExercisesPage,
-    SetingsPage
+    SetingsPage,
+    CalendarPage
   ],
   providers: [
     StatusBar,
