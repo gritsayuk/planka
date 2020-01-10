@@ -58,7 +58,7 @@ export class ListPage {
     this.admobFree.banner.prepare().then(() => {
       // success
     }).catch(e => alert(e));
-}
+  }
   editReorderItems () {
     this.reorderItems = !this.reorderItems;
   }
