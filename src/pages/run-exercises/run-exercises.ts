@@ -27,6 +27,7 @@ export class RunExercisesPage {
 
   history : any = "";
   historyNum : number = -1;
+  histiryExrNum : number = 0;
   constructor(public navCtrl: NavController,
               private admobFree: AdMobFree, 
               public navParams: NavParams,
@@ -52,7 +53,7 @@ export class RunExercisesPage {
         () => console.log('>>>>>>allowSleepAgain success')
       );
   }
-  saveHistory (ExrRun) {
+  saveHistory (status) {
     let pTimeStamp = new Date();
     let pToday = pTimeStamp.getDate();
 
@@ -63,17 +64,21 @@ export class RunExercisesPage {
           if (!!res) {
             this.history = res;
           }
-          if (this.historyNum == -1) {
-            this.historyNum = this.history[pToday].length;
-          }
-          if(!!this.history[pToday]) {
+          if(!this.history[pToday]) {
             this.history[pToday] = [];
           }
-          this.history[pToday][this.historyNum][this.listExr.nameComplexExr]
-      });
+          this.historyNum = this.history[pToday].length;
+          this.history[pToday][this.historyNum] = this.listExrProgress;          
+
+          this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+          this.histiryExrNum ++;
+          console.log(">>>>saveHistory>>>",this.history);
+        });
     } else {
+      this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+      this.histiryExrNum ++;
+      console.log(">>>>saveHistory>>>",this.history);  
     }
-    console.log(">>>>ExrRun>>>",ExrRun);
   }
   showBannerAd() {
   //Показываем рекламу
@@ -111,7 +116,7 @@ export class RunExercisesPage {
     this.ExrRunIndex++;
     if (!!this.ExrRun.type) {
       this.listExrDone.push(this.ExrRun);
-      this.saveHistory(this.ExrRun);
+      this.saveHistory("OK");
     }
     if (!!this.listExr.Exr && this.listExr.Exr.length > 0) {
       this.ExrRun = this.listExr.Exr[0];
