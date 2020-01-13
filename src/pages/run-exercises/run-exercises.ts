@@ -55,7 +55,11 @@ export class RunExercisesPage {
   }
   saveHistory (status) {
     let pTimeStamp = new Date();
-    let pToday = pTimeStamp.getDate();
+    pTimeStamp.setHours(0);
+    pTimeStamp.setMinutes(0);
+    pTimeStamp.setSeconds(0);
+    pTimeStamp.setMilliseconds(0);
+    let pToday = pTimeStamp.getTime();
 
     if (this.history == "") {
       this.history = {};
@@ -71,12 +75,22 @@ export class RunExercisesPage {
           this.history[pToday][this.historyNum] = this.listExrProgress;          
 
           this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+          if (status == "OK") {
+            this.history[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
+            this.history[pToday]["AllTimeOK"] = isNaN(this.history[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday]["AllTimeOK"] += this.ExrRun.time;
+          }
           this.histiryExrNum ++;
+          this.storage.set("history", this.history);
           console.log(">>>>saveHistory>>>",this.history);
         });
     } else {
       this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+      if (status == "OK") {
+        this.history[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
+        this.history[pToday]["AllTimeOK"] = isNaN(this.history[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday]["AllTimeOK"] += this.ExrRun.time;
+      }
       this.histiryExrNum ++;
+      this.storage.set("history", this.history);
       console.log(">>>>saveHistory>>>",this.history);  
     }
   }
