@@ -30,7 +30,11 @@
       "Cancel": "Відмінити",
       "Alert1": "Введіть будьласка назву тренування!"
     },
-    "Setings": {
+    "CalendarPage": {
+      "title": "Календар",
+      "monthPickerFormat": "JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC"
+    },
+      "Setings": {
       "Title": "Налаштування",
       "Language": "Мова"
     },

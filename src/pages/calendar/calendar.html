@@ -1,6 +1,20 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Calendar</ion-title>
+    <table class="header-tbl">
+      <tr >
+        <td>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </td>
+        <td>
+          <ion-title>{{'CalendarPage.title' | translate}}</ion-title>
+        </td>
+        <td class = "icon-close">
+          <ion-icon name = "close" (click) = "Close()"></ion-icon>
+        </td>
+      </tr>
+    </table>
   </ion-navbar>
 </ion-header>
 

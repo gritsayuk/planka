@@ -81,7 +81,7 @@ export class RunExercisesPage {
           }
           this.histiryExrNum ++;
           this.storage.set("history", this.history);
-          console.log(">>>>saveHistory>>>",this.history);
+          //console.log(">>>>saveHistory>>>",this.history);
         });
     } else {
       this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;

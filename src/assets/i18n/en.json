@@ -30,6 +30,10 @@
     "Cancel": "Cancel",
     "Alert1": "Please set name training!"
   },
+  "CalendarPage": {
+    "title": "Calendar",
+    "monthPickerFormat": "JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC"
+  },
   "Setings": {
     "Title": "Setings",
     "Language": "Language"
