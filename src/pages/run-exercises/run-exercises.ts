@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { Insomnia, } from '@ionic-native/insomnia';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -24,10 +25,14 @@ export class RunExercisesPage {
   displayTime:any;
   displayTimePreStart:number = -1;
 
+  history : any = "";
+  historyNum : number = -1;
+  histiryExrNum : number = 0;
   constructor(public navCtrl: NavController,
               private admobFree: AdMobFree, 
               public navParams: NavParams,
-              private insomnia: Insomnia) {
+              private insomnia: Insomnia,
+              private storage: Storage) {
     this.listExr = JSON.parse(JSON.stringify(navParams.data));
     this.listExrProgress = JSON.parse(JSON.stringify(navParams.data));
   }
@@ -47,6 +52,47 @@ export class RunExercisesPage {
       .then(
         () => console.log('>>>>>>allowSleepAgain success')
       );
+  }
+  saveHistory (status) {
+    let pTimeStamp = new Date();
+    pTimeStamp.setHours(0);
+    pTimeStamp.setMinutes(0);
+    pTimeStamp.setSeconds(0);
+    pTimeStamp.setMilliseconds(0);
+    let pToday = pTimeStamp.getTime();
+
+    if (this.history == "") {
+      this.history = {};
+      this.storage.get("history")
+        .then(res => {
+          if (!!res) {
+            this.history = res;
+          }
+          if(!this.history[pToday]) {
+            this.history[pToday] = [];
+          }
+          this.historyNum = this.history[pToday].length;
+          this.history[pToday][this.historyNum] = this.listExrProgress;          
+
+          this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+          if (status == "OK") {
+            this.history[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
+            this.history[pToday]["AllTimeOK"] = isNaN(this.history[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday]["AllTimeOK"] += this.ExrRun.time;
+          }
+          this.histiryExrNum ++;
+          this.storage.set("history", this.history);
+          //console.log(">>>>saveHistory>>>",this.history);
+        });
+    } else {
+      this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+      if (status == "OK") {
+        this.history[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
+        this.history[pToday]["AllTimeOK"] = isNaN(this.history[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday]["AllTimeOK"] += this.ExrRun.time;
+      }
+      this.histiryExrNum ++;
+      this.storage.set("history", this.history);
+      console.log(">>>>saveHistory>>>",this.history);  
+    }
   }
   showBannerAd() {
   //Показываем рекламу
@@ -84,6 +130,7 @@ export class RunExercisesPage {
     this.ExrRunIndex++;
     if (!!this.ExrRun.type) {
       this.listExrDone.push(this.ExrRun);
+      this.saveHistory("OK");
     }
     if (!!this.listExr.Exr && this.listExr.Exr.length > 0) {
       this.ExrRun = this.listExr.Exr[0];
