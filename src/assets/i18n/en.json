@@ -32,7 +32,12 @@
   },
   "CalendarPage": {
     "title": "Calendar",
-    "monthPickerFormat": "JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC"
+    "monthPickerFormat": "JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC",
+    "weekdaysPickerFormat": "S,M,T,W,T,F,S",
+    "h" : " h.",
+    "min" : " min.",
+    "sek" : " seс.",
+    "long" : "Duration: "
   },
   "Setings": {
     "Title": "Setings",
