@@ -57,11 +57,14 @@ constructor(public navCtrl: NavController,
 }
   onChange($event) {
     console.log($event["_i"]);
-    let allTime = parseInt(!!this.history[$event["_i"]] && this.history[$event["_i"]].AllTimeOK)/1000;
+    console.log(this.history);
+    let allTime = 0;
     let timeH = 0;
     let timeM = 0;
     let allTimeStr = "";
-
+    if (!!this.history[$event["_i"]]) {
+      allTime = parseInt(this.history[$event["_i"]].AllTimeOK)/1000;
+    }
     if(allTime >= 3600) {
       timeH = Math.trunc(allTime/3600);
       allTime -= timeH*3600; 
