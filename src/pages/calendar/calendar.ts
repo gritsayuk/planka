@@ -35,8 +35,8 @@ constructor(public navCtrl: NavController,
     .then(res => {
       if (!!res) {
         this.history = res;
-        //console.log(">>>>",this.history);
-        for (var i in this.history) {
+        console.log(">>>>",this.history);
+        for (var i in this.history.days) {
           if (this.fromDate == 0) {
             this.fromDate = new Date(parseInt(i)); 
           }
@@ -62,8 +62,8 @@ constructor(public navCtrl: NavController,
     let timeH = 0;
     let timeM = 0;
     let allTimeStr = "";
-    if (!!this.history[$event["_i"]]) {
-      allTime = parseInt(this.history[$event["_i"]].AllTimeOK)/1000;
+    if (!!this.history.days[$event["_i"]]) {
+      allTime = parseInt(this.history.days[$event["_i"]].AllTimeOK)/1000;
     }
     if(allTime >= 3600) {
       timeH = Math.trunc(allTime/3600);
