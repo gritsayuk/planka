@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,8 @@ export class CalendarPage {
 constructor(public navCtrl: NavController, 
             public navParams: NavParams, 
             private translate: TranslateService,
-            private storage: Storage) {
+            private storage: Storage,
+            public alertController: AlertController) {
    translate.get('CalendarPage')
       .subscribe(value => {
           this.transtateList = value;
@@ -45,7 +46,7 @@ constructor(public navCtrl: NavController,
       this.optionsMulti = {
         from: 
         this.fromDate,
-        pickMode: 'multi',
+        pickMode: 'single',
         monthPickerFormat: this.transtateList.monthPickerFormat.split(','),
         weekdays: this.transtateList.weekdaysPickerFormat.split(','),
         //monthFormat: 'MMMM YYYY',
@@ -55,7 +56,8 @@ constructor(public navCtrl: NavController,
         });
 }
   onChange($event) {
-    let allTime = parseInt(this.history[$event[0]["_i"]].AllTimeOK)/1000;
+    console.log($event["_i"]);
+    let allTime = parseInt(!!this.history[$event["_i"]] && this.history[$event["_i"]].AllTimeOK)/1000;
     let timeH = 0;
     let timeM = 0;
     let allTimeStr = "";
@@ -77,9 +79,17 @@ constructor(public navCtrl: NavController,
       allTimeStr += allTimeStr == "" ? "" : " ";
       allTimeStr += allTime.toString() + this.transtateList.sek
     }
+    if (allTimeStr != "") {
+      //alert(this.transtateList.long + allTimeStr);
 
-    alert(this.transtateList.long + allTimeStr);
-
+      const alert = this.alertController.create({
+        title: this.transtateList.long,
+        subTitle: allTimeStr,
+        buttons: ['OK']
+      });
+  
+      alert.present();
+    }
   }
   ionViewDidLoad() {
     //console.log('ionViewDidLoad CalendarPage');
