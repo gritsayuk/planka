@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +22,8 @@ export class CalendarPage {
 constructor(public navCtrl: NavController, 
             public navParams: NavParams, 
             private translate: TranslateService,
-            private storage: Storage) {
+            private storage: Storage,
+            public alertController: AlertController) {
    translate.get('CalendarPage')
       .subscribe(value => {
           this.transtateList = value;
@@ -36,27 +37,64 @@ constructor(public navCtrl: NavController,
     .then(res => {
       if (!!res) {
         this.history = res;
-        //console.log(">>>>",this.history);
-        for (var i in this.history) {
+        console.log(">>>>",this.history);
+        for (var i in this.history.days) {
           if (this.fromDate == 0) {
-            this.fromDate = new Date(1*i); 
+            this.fromDate = new Date(parseInt(i)); 
           }
-          dtsJSON.push({date: new Date(1*i), cssClass: 'good-day'});
+          dtsJSON.push({date: new Date(parseInt(i)), cssClass: 'good-day'});
         }
       }
       this.optionsMulti = {
-        from: this.fromDate,
-        pickMode: 'multi',
+        from: 
+        this.fromDate,
+        pickMode: 'single',
         monthPickerFormat: this.transtateList.monthPickerFormat.split(','),
-        monthFormat: 'MMMM YYYY',
+        weekdays: this.transtateList.weekdaysPickerFormat.split(','),
+        //monthFormat: 'MMMM YYYY',
+        monthFormat: 'MM-YYYY',
         daysConfig: dtsJSON
       };
         });
 }
   onChange($event) {
-    //console.log(">>>>onChange>>>>",$event);
-    //console.log(">>>>dateMulti>>>>",this.dateMulti);
-    
+    console.log($event["_i"]);
+    console.log(this.history);
+    let allTime = 0;
+    let timeH = 0;
+    let timeM = 0;
+    let allTimeStr = "";
+    if (!!this.history.days[$event["_i"]]) {
+      allTime = parseInt(this.history.days[$event["_i"]].AllTimeOK)/1000;
+    }
+    if(allTime >= 3600) {
+      timeH = Math.trunc(allTime/3600);
+      allTime -= timeH*3600; 
+      allTimeStr = timeH.toString() + this.transtateList.h
+    }
+
+    if(allTime >= 60) {
+      timeM = Math.trunc(allTime/60);
+      allTime -= timeM*60; 
+      allTimeStr += allTimeStr == "" ? "" : " ";
+      allTimeStr += timeM.toString() + this.transtateList.min
+    }
+
+    if(allTime > 0) {
+      allTimeStr += allTimeStr == "" ? "" : " ";
+      allTimeStr += allTime.toString() + this.transtateList.sek
+    }
+    if (allTimeStr != "") {
+      //alert(this.transtateList.long + allTimeStr);
+
+      const alert = this.alertController.create({
+        title: this.transtateList.long,
+        subTitle: allTimeStr,
+        buttons: ['OK']
+      });
+  
+      alert.present();
+    }
   }
   ionViewDidLoad() {
     //console.log('ionViewDidLoad CalendarPage');

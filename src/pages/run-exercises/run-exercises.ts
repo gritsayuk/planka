@@ -47,6 +47,7 @@ export class RunExercisesPage {
     this.showBannerAd();
   }
   ionViewDidLeave() {
+    this.Stop ();
     //Выключаем экран
     this.insomnia.allowSleepAgain()
       .then(
@@ -59,41 +60,53 @@ export class RunExercisesPage {
     pTimeStamp.setMinutes(0);
     pTimeStamp.setSeconds(0);
     pTimeStamp.setMilliseconds(0);
-    let pToday = pTimeStamp.getTime();
+    let pToday : number = pTimeStamp.getTime();
 
     if (this.history == "") {
       this.history = {};
+      //this.history.AllTimeOK = 0;
       this.storage.get("history")
         .then(res => {
+          console.log(">>>res>>>",res);
           if (!!res) {
             this.history = res;
           }
-          if(!this.history[pToday]) {
-            this.history[pToday] = [];
+          if(!this.history.days) {
+            this.history.days = {};
           }
-          this.historyNum = this.history[pToday].length;
-          this.history[pToday][this.historyNum] = this.listExrProgress;          
-
-          this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+          if (!this.history.days[pToday]) {
+            this.history.days[pToday] = {};
+            this.history.days[pToday].len = 0;
+          }
+          this.historyNum = this.history.days[pToday].len;
+          this.history.days[pToday][this.historyNum] = this.listExrProgress;          
+          this.history.days[pToday].len = parseInt(this.history.days[pToday].len)+1;
+          this.history.days[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
           if (status == "OK") {
-            this.history[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
-            this.history[pToday]["AllTimeOK"] = isNaN(this.history[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday]["AllTimeOK"] += this.ExrRun.time;
+            this.history.days[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history.days[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
+            this.history.days[pToday].AllTimeOK = isNaN(this.history.days[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday]["AllTimeOK"] += this.ExrRun.time;
           }
-          this.histiryExrNum ++;
           this.storage.set("history", this.history);
-          //console.log(">>>>saveHistory>>>",this.history);
+          console.log(">>>res111!!!>>>", this.history);
+          this.storage.get("history")
+          .then(res => {console.log(">>>res111!!!>>>", res)});
+
+          this.histiryExrNum ++;
         });
     } else {
-      this.history[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
+      this.history.days[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
       if (status == "OK") {
-        this.history[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
-        this.history[pToday]["AllTimeOK"] = isNaN(this.history[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history[pToday]["AllTimeOK"] += this.ExrRun.time;
+        this.history.days[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history.days[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
+        this.history.days[pToday].AllTimeOK = isNaN(this.history.days[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday]["AllTimeOK"] += this.ExrRun.time;
       }
-      this.histiryExrNum ++;
       this.storage.set("history", this.history);
-      console.log(">>>>saveHistory>>>",this.history);  
+      this.storage.get("history")
+      .then(res => {console.log(">>>res2222!!!>>>", res)});
+      this.histiryExrNum ++;
     }
-  }
+
+    console.log(">>>>saveHistory2>>>",this.history);  
+}
   showBannerAd() {
   //Показываем рекламу
     let bannerConfig: AdMobFreeBannerConfig = {
