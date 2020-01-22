@@ -31,7 +31,7 @@
       "Alert1": "Введіть будьласка назву тренування!"
     },
     "CalendarPage": {
-      "title": "Календар",
+      "title": "Прогрес",
       "monthPickerFormat": "JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC",
       "weekdaysPickerFormat": "П,В,С,Ч,П,С,Н",
       "h" : " г.",

@@ -31,7 +31,7 @@
     "Alert1": "Please set name training!"
   },
   "CalendarPage": {
-    "title": "Calendar",
+    "title": "Progress",
     "monthPickerFormat": "JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC",
     "weekdaysPickerFormat": "S,M,T,W,T,F,S",
     "h" : " h.",
