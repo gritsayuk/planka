@@ -17,6 +17,8 @@ export class CalendarPage {
   history : any = {};
   transtateList : any = {};
   fromDate: any = 0;
+  locale: 'en-GB';
+
 constructor(public navCtrl: NavController, 
             public navParams: NavParams, 
             private translate: TranslateService,
@@ -43,8 +45,7 @@ constructor(public navCtrl: NavController,
         }
       }
       this.optionsMulti = {
-        from: 
-        this.fromDate,
+        from: this.fromDate,
         pickMode: 'multi',
         monthPickerFormat: this.transtateList.monthPickerFormat.split(','),
         monthFormat: 'MMMM YYYY',
