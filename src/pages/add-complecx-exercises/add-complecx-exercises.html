@@ -22,26 +22,32 @@
           <ion-input placeholder="Time" [(ngModel)]="ComplExr.notificationTime"></ion-input>
     </ion-item-->
   <ion-list reorder="true" (ionItemReorder)="itemReorder($event)">
-      <ion-item-sliding *ngFor="let item of ComplExr.Exr; let i = index">
-      <ion-item>
-          <ion-label color="primary">
+      <ion-item *ngFor="let item of ComplExr.Exr; let i = index">
+        <ion-label color="primary">
             <tr>
               <td>
                 <img src="{{item.imageExr}}" class = 'imgExr'>
               </td>
               <td>
-                <h1>{{item.text}}</h1>
+                <h2>{{item.text}}</h2>
               </td>
-              <td>
-                <h2><ion-datetime  pickerFormat="m:s" [(ngModel)]="item.timeStr"></ion-datetime></h2>
+              <td class="under-time">
+                <h1><ion-datetime class="text-lable-def" pickerFormat="m:s" [(ngModel)]="item.timeStr"></ion-datetime></h1>
               </td>
+              <!--td class="cust-ion-icon-center">
+                  <ion-icon (click)="deleteItem(i)" name="trash"></ion-icon>
+                  <p class="menu-item">{{'AddComplecxExercisesPage.Delete' | translate}}</p>
+              </td-->
             </tr>
           </ion-label>
+          <ion-text class="cust-ion-icon-center"  (click)="deleteItem(i)" slot="end">
+            <ion-icon name="trash"></ion-icon>
+            <p class="menu-item">{{'AddComplecxExercisesPage.Delete' | translate}}</p>
+          </ion-text>
       </ion-item>
-      <ion-item-options side="right">
+      <!--<ion-item-options side="right">
         <button ion-button (click)="deleteItem(i)"><ion-icon name="trash"></ion-icon>{{'AddComplecxExercisesPage.Delete' | translate}}</button>
-      </ion-item-options>
-    </ion-item-sliding>
+      </ion-item-options>-->
   <!--ion-fab bottom right>
     <button ion-fab mini (click)="presentActionSheet()" color = "light"><ion-icon name="add"></ion-icon></button>
   </ion-fab-->

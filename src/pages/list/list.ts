@@ -28,6 +28,7 @@ export class ListPage {
     setTimeout(() => {this.showBannerAd();},1000);
   }
   ionViewWillEnter () {
+    this.reorderItems = false;
     this.storage.get("listExr")
       .then(res => {
         if (!!res) {
