@@ -1,17 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ listExr.nameComplexExr }}</ion-title>
+    <tr>
+      <td>
+        <ion-title>{{ listExr.nameComplexExr }}</ion-title>
+      </td>
+      <td>
+        <ion-icon class="icon-edit-complex" name = "create" (click) = "editItem()" *ngIf = "!reorderItems" color = "secondary"></ion-icon>
+      </td>     
+    </tr>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <table>
-  <tr>
-    <td *ngFor="let item of listExrDone; let i = index">
+    <tr>
+      <td *ngFor="let item of listExrDone; let i = index">
         <img src="{{item.imageExr}}" class = 'imgExrOK'>
-    </td>
-  </tr>
-</table>
+      </td>
+    </tr>
+  </table>
 
   <!--ion-list *ngIf="listExrDone.length > 0">
     <ion-item   *ngFor="let item of listExrDone; let i = index">
@@ -27,7 +35,7 @@
     </ion-item>
   </ion-list-->
 
-  <div >
+  <div>
     <h1 *ngIf="ExrRun.type">
       <div *ngIf = "displayTimePreStart > -1" class = "displayTime" text-center>
         <p no-margin>{{displayTimePreStart}}</p>
@@ -44,19 +52,21 @@
   <div>
     <progress *ngFor="let item of listExrProgress.Exr; let i = index" value="{{!!item.runPercent ? item.runPercent : 0}}" id="progress{{i}}" [ngStyle]="{'width.%': item.percent}" reversed="false"></progress>
   </div>
-  <ion-list *ngIf="listExr.Exr.length > 0">
-    <ion-item   *ngFor="let item of listExr.Exr; let i = index">
-      <tr>
-        <td>
-          <img src="{{item.imageExr}}" class = 'imgExr'>
-        </td>
-        <td>
-          <h1>{{item.text}}</h1>
-          <h3>{{"RunPage.Time" | translate}}: {{ item.timeStr | date :  "m:s" }}</h3>   
-        </td>
-      </tr>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="!!listExr.Exr">
+    <ion-list *ngIf="!!listExr.Exr && listExr.Exr.length > 0">
+      <ion-item   *ngFor="let item of listExr.Exr; let i = index">
+        <tr>
+          <td>
+            <img src="{{item.imageExr}}" class = 'imgExr'>
+          </td>
+          <td>
+            <h1>{{item.text}}</h1>
+            <h3>{{"RunPage.Time" | translate}}: {{ item.timeStr | date :  "m:s" }}</h3>   
+          </td>
+        </tr>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
 <ion-footer>
     <div *ngIf="(!ExrRun.type || !hasStarted) && !(listExr.Exr.length <= 0 && listExrDone.length > 0) && displayTimePreStart === -1">

@@ -62,8 +62,8 @@ export class ListPage {
   editReorderItems () {
     this.reorderItems = !this.reorderItems;
   }
- runExr (item) {
-   this.navCtrl.push(RunExercisesPage, item);
+ runExr (i) {
+   this.navCtrl.push(RunExercisesPage, {indx: i});
  }
 
  addComplexExr () {
