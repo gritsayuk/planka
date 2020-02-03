@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { Insomnia, } from '@ionic-native/insomnia';
 import { Storage } from '@ionic/storage';
+import { AddComplecxExercisesPage } from '../add-complecx-exercises/add-complecx-exercises';
 
 
 @Component({
@@ -33,10 +34,20 @@ export class RunExercisesPage {
               public navParams: NavParams,
               private insomnia: Insomnia,
               private storage: Storage) {
-    this.listExr = JSON.parse(JSON.stringify(navParams.data));
-    this.listExrProgress = JSON.parse(JSON.stringify(navParams.data));
+      this.listExr = {};
+      this.listExr.Exr = new Array();
+      this.listExrProgress = {};
+      console.log("this.listExr.Exr>>>",this.listExr.Exr);
   }
   ionViewWillEnter() {
+    this.storage.get("listExr")
+    .then( res => {
+      this.listExr = JSON.parse(JSON.stringify(res[this.navParams.data.indx]));
+      this.listExrProgress = JSON.parse(JSON.stringify(res[this.navParams.data.indx]));
+      console.log("this.listExr: ",this.navParams.data.indx);
+      console.log("res: ",res);
+      });
+
     //Не выключаем экран
     this.insomnia.keepAwake()
       .then(
@@ -53,6 +64,9 @@ export class RunExercisesPage {
       .then(
         () => console.log('>>>>>>allowSleepAgain success')
       );
+  }
+  editItem() {
+    this.navCtrl.push(AddComplecxExercisesPage, {indx: this.navParams.data.indx});
   }
   saveHistory (status) {
     let pTimeStamp = new Date();
@@ -136,7 +150,7 @@ export class RunExercisesPage {
   Stop () {
     this.ExrRun = {}
     this.listExrDone = [];
-    this.listExr = JSON.parse(JSON.stringify(this.navParams.data));
+    this.listExr = JSON.parse(JSON.stringify(this.navParams.data.item));
     this.initTimer();
   }
   moveExr () {
