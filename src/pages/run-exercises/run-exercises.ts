@@ -11,6 +11,7 @@ import { AddComplecxExercisesPage } from '../add-complecx-exercises/add-complecx
   templateUrl: 'run-exercises.html',
 })
 export class RunExercisesPage {
+  listExrIn: any;
   listExr: any = [];
   listExrProgress: any = [];
   listExrDone: any = [];
@@ -37,14 +38,14 @@ export class RunExercisesPage {
       this.listExr = {};
       this.listExr.Exr = new Array();
       this.listExrProgress = {};
-      console.log("this.listExr.Exr>>>",this.listExr.Exr);
   }
   ionViewWillEnter() {
     this.storage.get("listExr")
     .then( res => {
-      this.listExr = JSON.parse(JSON.stringify(res[this.navParams.data.indx]));
-      this.listExrProgress = JSON.parse(JSON.stringify(res[this.navParams.data.indx]));
+      this.listExrIn = res[this.navParams.data.indx];
       console.log("this.listExr: ",this.navParams.data.indx);
+      this.listExr = JSON.parse(JSON.stringify(this.listExrIn));
+      this.listExrProgress = JSON.parse(JSON.stringify(this.listExrIn));
       console.log("res: ",res);
       });
 
@@ -150,7 +151,7 @@ export class RunExercisesPage {
   Stop () {
     this.ExrRun = {}
     this.listExrDone = [];
-    this.listExr = JSON.parse(JSON.stringify(this.navParams.data.item));
+    this.listExr = JSON.parse(JSON.stringify(this.listExrIn));
     this.initTimer();
   }
   moveExr () {

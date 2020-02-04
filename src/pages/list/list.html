@@ -37,7 +37,7 @@
    <ion-list *ngIf="listExr.length > 0" side = "start" reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
      <ion-item-sliding *ngFor="let item of listExr; let i = index" >
        <ion-item (onPressing)="alert('onPressing')" >
-        <ion-label (click)="runExr (item)">
+        <ion-label (click)="runExr (i)">
           <h1 [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{item.nameComplexExr}}</h1>
           <p>{{'StartPage.Count' | translate}}: {{item.Exr.length}}</p>
         </ion-label>
