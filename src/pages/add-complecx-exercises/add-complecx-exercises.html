@@ -14,12 +14,11 @@
       <ion-input placeholder="{{'AddComplecxExercisesPage.Pause' | translate}}" [(ngModel)]="ComplExr.pause"></ion-input>
     </ion-item>
     <!--ion-item>
-        <ion-label color="primary">{{'AddComplecxExercisesPage.Notification' | translate}}</ion-label>
-        <ion-input placeholder="Notification" [(ngModel)]="ComplExr.notification"></ion-input>
-    </ion-item>
-    <ion-item>
-          <ion-label color="primary">{{'AddComplecxExercisesPage.Time' | translate}}</ion-label>
-          <ion-input placeholder="Time" [(ngModel)]="ComplExr.notificationTime"></ion-input>
+      <ion-label>Gender</ion-label>
+      <ion-select interface="popover" placeholder="Select One">
+        <ion-option value="brown">Brown</ion-option>
+        <ion-option value="blonde">Blonde</ion-option>
+      </ion-select>
     </ion-item-->
   <ion-list side="end" reorder="true" (ionItemReorder)="itemReorder($event)">
       <ion-item *ngFor="let item of ComplExr.Exr; let i = index">
@@ -43,12 +42,6 @@
           </table>
           </ion-label>
       </ion-item>
-      <!--<ion-item-options side="right">
-        <button ion-button (click)="deleteItem(i)"><ion-icon name="trash"></ion-icon>{{'AddComplecxExercisesPage.Delete' | translate}}</button>
-      </ion-item-options>-->
-  <!--ion-fab bottom right>
-    <button ion-fab mini (click)="presentActionSheet()" color = "light"><ion-icon name="add"></ion-icon></button>
-  </ion-fab-->
   </ion-list >
   <button ion-button color="light" (click)="presentActionSheet()" class = "button-1">{{'AddComplecxExercisesPage.Add' | translate}}</button>
 </ion-content>
