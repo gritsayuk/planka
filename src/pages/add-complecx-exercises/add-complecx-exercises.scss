@@ -1,7 +1,7 @@
 page-add-complecx-exercises {
   .imgExr {
     width: 60px;
-    margin-right: 20px;
+   /* margin-right: 20px;*/
   }
   .button-2 {
     width: 25%;
@@ -32,6 +32,19 @@ page-add-complecx-exercises {
     .list-md {
       margin: 0px 0 16px;
     }
+  .ion-item-table {
+    display: table;
+    width: 100%;
+  }
+  .item-lable {
+    width: 30%;
+  }
+  .ion-label-exer {
+    margin-right: 0;
+  }
+  .item-cover {
+    display: none;
+  }
 }
 
 
