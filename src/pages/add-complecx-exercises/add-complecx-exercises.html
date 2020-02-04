@@ -33,7 +33,7 @@
                 <h2>{{item.text}}</h2>
               </td>
               <td class="under-time">
-                <h1><ion-datetime class="text-lable-def" pickerFormat="m:s" [(ngModel)]="item.timeStr"></ion-datetime></h1>
+                <h1><ion-datetime class="text-lable-def" pickerFormat="m:s" [(ngModel)]="item.timeStr" (ionChange)="changeTime(item.timeStr)"></ion-datetime></h1>
               </td>
               <td class="cust-ion-icon-center" (click)="deleteItem(i)">
                 <ion-icon name="trash"></ion-icon>

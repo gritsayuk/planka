@@ -27,6 +27,7 @@ export class AddComplecxExercisesPage {
   transtateList: any;
   translateExer: any;
   actionSheetOption: any;
+  setLastTime: number = 0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -59,6 +60,10 @@ export class AddComplecxExercisesPage {
   }
   ionViewDidEnter() {
     this.showBannerAd();
+  }
+  changeTime(timeStr) {
+    //alert(this.getTime(timeStr));
+    this.setLastTime = Date.parse(timeStr) - this.stardDT;
   }
   showBannerAd() {
     let bannerConfig: AdMobFreeBannerConfig = {
@@ -116,8 +121,11 @@ export class AddComplecxExercisesPage {
   AddExr(item) {
     let itemSrorage = JSON.parse(JSON.stringify(item))
     itemSrorage.handler = null;
-    itemSrorage.timeStr = this.getTime(itemSrorage.time);
-
+    if (this.setLastTime == 0) {
+      itemSrorage.timeStr = this.getTime(itemSrorage.time);
+    } else {
+      itemSrorage.timeStr = this.getTime(this.setLastTime);
+    }
     this.ComplExr.Exr.push(itemSrorage);
     setTimeout(() => {this.contentArea.scrollToBottom()});
   }
