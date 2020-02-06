@@ -13,15 +13,21 @@
       <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>
       <ion-input placeholder="{{'AddComplecxExercisesPage.Pause' | translate}}" [(ngModel)]="ComplExr.pause"></ion-input>
     </ion-item>
-    <!--ion-item>
-      <ion-label>Gender</ion-label>
-      <ion-select interface="popover" placeholder="Select One">
-        <ion-option value="brown">Brown</ion-option>
-        <ion-option value="blonde">Blonde</ion-option>
+    <ion-item>
+      <ion-label color="primary">{{'AddComplecxExercisesPage.ProgressLb' | translate}}</ion-label>
+      <ion-input placeholder="{{'AddComplecxExercisesPage.ProgressNum' | translate}}" [(ngModel)]="ComplExr.progressNum"></ion-input>
+      <ion-select interface="popover" placeholder="AddComplecxExercisesPage.ProgressLb" [(ngModel)]="ComplExr.progressPer">
+        <ion-option value="1">{{'AddComplecxExercisesPage.D1' | translate}}</ion-option>
+        <ion-option value="2">{{'AddComplecxExercisesPage.D2' | translate}}</ion-option>
+        <ion-option value="3">{{'AddComplecxExercisesPage.D3' | translate}}</ion-option>
+        <ion-option value="4">{{'AddComplecxExercisesPage.D4' | translate}}</ion-option>
+        <ion-option value="5">{{'AddComplecxExercisesPage.D5' | translate}}</ion-option>
+        <ion-option value="6">{{'AddComplecxExercisesPage.D6' | translate}}</ion-option>
+        <ion-option value="7">{{'AddComplecxExercisesPage.D7' | translate}}</ion-option>
       </ion-select>
-    </ion-item-->
-  <ion-list side="end" reorder="true" (ionItemReorder)="itemReorder($event)">
-      <ion-item *ngFor="let item of ComplExr.Exr; let i = index">
+    </ion-item>
+  <ion-list reorder="true" (ionItemReorder)="itemReorder($event)" >
+      <ion-item *ngFor="let item of ComplExr.Exr; let i = index" class="ion-item-list-exr">
         <ion-label color="primary" class="ion-label-exer">
           <table class="ion-item-table">  
             <tr>
@@ -31,8 +37,11 @@
               <td class="item-lable">
                 <h2>{{item.text}}</h2>
               </td>
-              <td class="under-time">
-                <h1><ion-datetime class="text-lable-def" pickerFormat="m:s" [(ngModel)]="item.timeStr" (ionChange)="changeTime(item.timeStr)"></ion-datetime></h1>
+              <td class="">
+                <h1>
+                  <ion-datetime class="under-time text-lable-def" pickerFormat="m:s" [(ngModel)]="item.timeStr" (ionChange)="changeTime(item.timeStr)"></ion-datetime>
+                  <p class="time-lable-buttom">{{'AddComplecxExercisesPage.Time-lable' | translate}}</p>
+                </h1>
               </td>
               <td class="cust-ion-icon-center" (click)="deleteItem(i)">
                 <ion-icon name="trash"></ion-icon>

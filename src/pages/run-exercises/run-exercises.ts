@@ -26,6 +26,7 @@ export class RunExercisesPage {
   remainingTime:any;
   displayTime:any;
   displayTimePreStart:number = -1;
+  tzoffset:number;
 
   history : any = "";
   historyNum : number = -1;
@@ -35,6 +36,7 @@ export class RunExercisesPage {
               public navParams: NavParams,
               private insomnia: Insomnia,
               private storage: Storage) {
+      this.tzoffset = (new Date("01.01.2000")).getTimezoneOffset() * 60000; //offset in milliseconds
       this.listExr = {};
       this.listExr.Exr = new Array();
       this.listExrProgress = {};
@@ -42,12 +44,11 @@ export class RunExercisesPage {
   ionViewWillEnter() {
     this.storage.get("listExr")
     .then( res => {
-      this.listExrIn = res[this.navParams.data.indx];
-      console.log("this.listExr: ",this.navParams.data.indx);
-      this.listExr = JSON.parse(JSON.stringify(this.listExrIn));
-      this.listExrProgress = JSON.parse(JSON.stringify(this.listExrIn));
-      console.log("res: ",res);
-      });
+      this.listExrIn = res;
+      this.addProgress();
+      this.listExr = JSON.parse(JSON.stringify(this.listExrIn[this.navParams.data.indx]));
+      this.listExrProgress = JSON.parse(JSON.stringify(this.listExrIn[this.navParams.data.indx]));
+    });
 
     //Не выключаем экран
     this.insomnia.keepAwake()
@@ -65,6 +66,38 @@ export class RunExercisesPage {
       .then(
         () => console.log('>>>>>>allowSleepAgain success')
       );
+  }
+  addProgress() {
+    let addAllTime: number = 0;
+    console.log(this.listExrIn);
+      if (!!this.listExrIn[this.navParams.data.indx].complexRunOK && !!this.listExrIn[this.navParams.data.indx].progressNum && !!this.listExrIn[this.navParams.data.indx].progressPer) {
+        if (this.listExrIn[this.navParams.data.indx].complexRunOK >= this.listExrIn[this.navParams.data.indx].progressPer) {
+          for (let i = 0; i < this.listExrIn[this.navParams.data.indx].Exr.length; i++) {
+            console.log(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
+            this.listExrIn[this.navParams.data.indx].Exr[i]["time"] = this.listExrIn[this.navParams.data.indx].Exr[i]["time"] + this.listExrIn[this.navParams.data.indx].progressNum * 1000;
+            this.listExrIn[this.navParams.data.indx].Exr[i]["timeStr"] = this.getTime(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
+            addAllTime += parseInt(this.listExrIn[this.navParams.data.indx].progressNum) * 1000;
+            
+            console.log(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
+          }
+          console.log("2");
+          if (addAllTime >0) {
+            this.listExrIn[this.navParams.data.indx].allTime += addAllTime;
+            this.listExrIn[this.navParams.data.indx].complexRunOK = 0;
+          }
+          this.storage.set("listExr", this.listExrIn);
+        }
+      }
+      console.log(this.listExrIn);
+  }
+  getTime(time) {
+    let startDate: Date;
+    startDate = new Date("01.01.2000");
+    startDate.setHours(0, 0, 0, 0);
+    startDate = new Date(startDate.getTime() - this.tzoffset+time);
+
+    //return startDate.toISOString();
+    return startDate.toISOString().slice(0, 19) + 'Z';
   }
   editItem() {
     this.navCtrl.push(AddComplecxExercisesPage, {indx: this.navParams.data.indx});
@@ -166,6 +199,12 @@ export class RunExercisesPage {
       this.timeInSeconds = 0;
     } else {
       this.ExrRun = {}
+      if(!!this.listExrIn.complexRunOK) {
+        this.listExrIn.complexRunOK = this.listExrIn.complexRunOK + 1;
+      } else {
+        this.listExrIn[this.navParams.data.indx].complexRunOK = 1;
+        this.storage.set("listExr", this.listExrIn);
+      }
     }
   }
   initTimer() {

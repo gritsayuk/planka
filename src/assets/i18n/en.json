@@ -28,7 +28,18 @@
     "Add": "Add",
     "Save": "Save",
     "Cancel": "Cancel",
-    "Alert1": "Please set name training!"
+    "Alert1": "Please set name training!",
+    "Time-lable": "min:sec",
+    "ProgressLb": "Progress (sec.)",
+    "ProgressNum": "Quantity",
+    "ProgressPer": "Type",
+    "D1": "every training",
+    "D2": "2 times training",
+    "D3": "3 times training",
+    "D4": "4 times training",
+    "D5": "5 times training",
+    "D6": "6 times training",
+    "D7": "7 times training"
   },
   "CalendarPage": {
     "title": "Progress",

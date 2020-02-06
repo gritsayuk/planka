@@ -22,6 +22,7 @@ page-add-complecx-exercises {
   }
   .text-lable-def {
     color: #000;
+    padding-bottom: 0;
   }
   .menu-item {
     font-size: 0.8rem;
@@ -42,8 +43,13 @@ page-add-complecx-exercises {
   .ion-label-exer {
     margin-right: 0;
   }
-  .item-cover {
+  .ion-item-list-exr .item-cover {
     display: none;
+  }
+  .time-lable-buttom {
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
   }
 }
 
