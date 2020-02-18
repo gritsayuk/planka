@@ -232,11 +232,11 @@ export class Constants {
     nameComplexExr: "Професійна",
     allTime: 60000,
     Exr: [{
-      text: "ліктьова",
+      text: "Ліктьова",
       time: 15000,
       percent: 25,
       timeStr: "2000-01-01T00:00:15Z",
-      type: "ліктьова",
+      type: "Ліктьова",
       imageExr: "../../assets/Exr/exr-cubit.png"
     },{
       text: "Права",
