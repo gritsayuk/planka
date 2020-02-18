@@ -102,7 +102,8 @@ export class RunExercisesPage {
   editItem() {
     this.navCtrl.push(AddComplecxExercisesPage, {indx: this.navParams.data.indx});
   }
-  saveHistory (status) {
+  saveHistory (status, ExrRun) {
+    
     let pTimeStamp = new Date();
     pTimeStamp.setHours(0);
     pTimeStamp.setMinutes(0);
@@ -131,8 +132,10 @@ export class RunExercisesPage {
           this.history.days[pToday].len = parseInt(this.history.days[pToday].len)+1;
           this.history.days[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
           if (status == "OK") {
-            this.history.days[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history.days[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
-            this.history.days[pToday].AllTimeOK = isNaN(this.history.days[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday]["AllTimeOK"] += this.ExrRun.time;
+            this.history.days[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history.days[pToday][this.historyNum]["AllTimeOK"]) ? ExrRun.time : this.history.days[pToday][this.historyNum]["AllTimeOK"] += ExrRun.time;
+            this.history.days[pToday]["AllTimeOK"] = isNaN(this.history.days[pToday]["AllTimeOK"]) ? ExrRun.time : this.history.days[pToday]["AllTimeOK"] += ExrRun.time;
+            console.log("isNaN: ",ExrRun);
+            console.log("isNaN: ",this.history.days[pToday]);
           }
           this.storage.set("history", this.history);
           console.log(">>>res111!!!>>>", this.history);
@@ -144,8 +147,8 @@ export class RunExercisesPage {
     } else {
       this.history.days[pToday][this.historyNum]["Exr"][this.histiryExrNum]["Status"] = status;
       if (status == "OK") {
-        this.history.days[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history.days[pToday][this.historyNum]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday][this.historyNum]["AllTimeOK"] += this.ExrRun.time;
-        this.history.days[pToday].AllTimeOK = isNaN(this.history.days[pToday]["AllTimeOK"]) ? this.ExrRun.time : this.history.days[pToday]["AllTimeOK"] += this.ExrRun.time;
+        this.history.days[pToday][this.historyNum]["AllTimeOK"] = isNaN(this.history.days[pToday][this.historyNum]["AllTimeOK"]) ? ExrRun.time : this.history.days[pToday][this.historyNum]["AllTimeOK"] += ExrRun.time;
+        this.history.days[pToday].AllTimeOK = isNaN(this.history.days[pToday]["AllTimeOK"]) ? ExrRun.time : this.history.days[pToday]["AllTimeOK"] += ExrRun.time;
       }
       this.storage.set("history", this.history);
       this.storage.get("history")
@@ -191,7 +194,7 @@ export class RunExercisesPage {
     this.ExrRunIndex++;
     if (!!this.ExrRun.type) {
       this.listExrDone.push(this.ExrRun);
-      this.saveHistory("OK");
+      this.saveHistory("OK", this.ExrRun);
     }
     if (!!this.listExr.Exr && this.listExr.Exr.length > 0) {
       this.ExrRun = this.listExr.Exr[0];

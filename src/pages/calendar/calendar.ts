@@ -58,8 +58,6 @@ constructor(public navCtrl: NavController,
         });
 }
   onChange($event) {
-    console.log($event["_i"]);
-    console.log(this.history);
     let allTime = 0;
     let timeH = 0;
     let timeM = 0;
