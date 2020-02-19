@@ -69,26 +69,31 @@ export class RunExercisesPage {
   }
   addProgress() {
     let addAllTime: number = 0;
-    console.log(this.listExrIn);
+    let pToday: any = new Date();
+    pToday.setHours(0);
+    pToday.setMinutes(0);
+    pToday.setSeconds(0);
+    pToday.setMilliseconds(0);
+    pToday = pToday.getTime();
+
       if (!!this.listExrIn[this.navParams.data.indx].complexRunOK && !!this.listExrIn[this.navParams.data.indx].progressNum && !!this.listExrIn[this.navParams.data.indx].progressPer) {
-        if (this.listExrIn[this.navParams.data.indx].complexRunOK >= this.listExrIn[this.navParams.data.indx].progressPer) {
-          for (let i = 0; i < this.listExrIn[this.navParams.data.indx].Exr.length; i++) {
-            console.log(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
-            this.listExrIn[this.navParams.data.indx].Exr[i]["time"] = this.listExrIn[this.navParams.data.indx].Exr[i]["time"] + this.listExrIn[this.navParams.data.indx].progressNum * 1000;
-            this.listExrIn[this.navParams.data.indx].Exr[i]["timeStr"] = this.getTime(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
-            addAllTime += parseInt(this.listExrIn[this.navParams.data.indx].progressNum) * 1000;
-            
-            console.log(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
+        if (this.listExrIn[this.navParams.data.indx].complexRunOKDT != pToday) {
+          if (this.listExrIn[this.navParams.data.indx].complexRunOK >= this.listExrIn[this.navParams.data.indx].progressPer) {
+            for (let i = 0; i < this.listExrIn[this.navParams.data.indx].Exr.length; i++) {
+              console.log(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
+              this.listExrIn[this.navParams.data.indx].Exr[i]["time"] = this.listExrIn[this.navParams.data.indx].Exr[i]["time"] + this.listExrIn[this.navParams.data.indx].progressNum * 1000;
+              this.listExrIn[this.navParams.data.indx].Exr[i]["timeStr"] = this.getTime(this.listExrIn[this.navParams.data.indx].Exr[i]["time"]);
+              addAllTime += parseInt(this.listExrIn[this.navParams.data.indx].progressNum) * 1000;
+            }
+            if (addAllTime > 0) {
+              this.listExrIn[this.navParams.data.indx].allTime += addAllTime;
+              this.listExrIn[this.navParams.data.indx].complexRunOK = 0;
+              this.listExrIn[this.navParams.data.indx].complexRunOKDT = pToday;
+            }
+            this.storage.set("listExr", this.listExrIn);
           }
-          console.log("2");
-          if (addAllTime >0) {
-            this.listExrIn[this.navParams.data.indx].allTime += addAllTime;
-            this.listExrIn[this.navParams.data.indx].complexRunOK = 0;
-          }
-          this.storage.set("listExr", this.listExrIn);
         }
       }
-      console.log(this.listExrIn);
   }
   getTime(time) {
     let startDate: Date;
@@ -191,6 +196,13 @@ export class RunExercisesPage {
     this.initTimer();
   }
   moveExr () {
+    let pToday: any = new Date();
+    pToday.setHours(0);
+    pToday.setMinutes(0);
+    pToday.setSeconds(0);
+    pToday.setMilliseconds(0);
+    pToday = pToday.getTime();
+
     this.ExrRunIndex++;
     if (!!this.ExrRun.type) {
       this.listExrDone.push(this.ExrRun);
@@ -202,12 +214,13 @@ export class RunExercisesPage {
       this.timeInSeconds = 0;
     } else {
       this.ExrRun = {}
-      if(!!this.listExrIn.complexRunOK) {
-        this.listExrIn.complexRunOK = this.listExrIn.complexRunOK + 1;
+      if(!!this.listExrIn[this.navParams.data.indx].complexRunOK) {
+        this.listExrIn[this.navParams.data.indx].complexRunOK = this.listExrIn.complexRunOK + 1;
       } else {
         this.listExrIn[this.navParams.data.indx].complexRunOK = 1;
-        this.storage.set("listExr", this.listExrIn);
+        this.listExrIn[this.navParams.data.indx].complexRunOKDT = pToday;
       }
+      this.storage.set("listExr", this.listExrIn);
     }
   }
   initTimer() {
