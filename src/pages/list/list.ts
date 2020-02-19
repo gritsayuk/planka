@@ -7,6 +7,7 @@ import { RunExercisesPage} from '../run-exercises/run-exercises';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddComplecxExercisesPage } from '../add-complecx-exercises/add-complecx-exercises';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 import { Constants } from '../../app/app.constants';
 
 @Component({
@@ -17,10 +18,12 @@ export class ListPage {
   AppLanguage: any;
   listExr: any = [];
   reorderItems: boolean = false;
+  translateExer: any = {};
   constructor(public navCtrl: NavController,
               public splashScreen: SplashScreen,
               private admobFree: AdMobFree,
               public navParams: NavParams,
+              private translate: TranslateService,
               private storage: Storage) {
   }
   ionViewDidEnter () {
@@ -28,6 +31,12 @@ export class ListPage {
     setTimeout(() => {this.showBannerAd();},1000);
   }
   ionViewWillEnter () {
+    /*this.translate.get('DefaultListExr').subscribe(
+      value => {
+        this.translateExer = value;
+        console.log("this.translateExer=",this.translateExer);
+      });*/
+
     this.reorderItems = false;
     this.storage.get("listExr")
       .then(res => {

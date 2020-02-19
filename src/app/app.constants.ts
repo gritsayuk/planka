@@ -2,6 +2,7 @@ export class Constants {
 
   static readonly DefaultListExr = [{
     nameComplexExr: "Simple",
+    standart: true,
     allTime: 30000,
     progressNum: 2,
     progressPer: 2,
@@ -145,6 +146,7 @@ export class Constants {
 
   static readonly DefaultListExrru = [{
     nameComplexExr: "Обычная",
+    standart: true,
     allTime: 30000,
     progressNum: 2,
     progressPer: 2,

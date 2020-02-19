@@ -2,7 +2,14 @@
     "M_LIST": "Тренировки",
     "M_CALENDAR": "Прогресс",
     "M_SETINGS": "Настройки",
-  
+ 
+    "DefaultListExr": {
+      "ComplexName": {
+        "Simple": "Обычная",
+        "Обычная": "222"
+      }
+    },
+
      "StartPage": {
       "Title": "Тренировки",
       "Delete": "Удалить",
