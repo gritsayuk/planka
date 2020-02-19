@@ -3,6 +3,8 @@ export class Constants {
   static readonly DefaultListExr = [{
     nameComplexExr: "Simple",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Simple",
       time: 30000,
@@ -15,6 +17,8 @@ export class Constants {
   }, {
     nameComplexExr: "Simple Left",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Simple",
       time: 15000,
@@ -34,6 +38,8 @@ export class Constants {
   }, {
     nameComplexExr: "Simple All",
     allTime: 60000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Cubit",
       time: 15000,
@@ -68,6 +74,8 @@ export class Constants {
   static readonly DefaultListExren = [{
     nameComplexExr: "Simple",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Simple",
       time: 30000,
@@ -80,6 +88,8 @@ export class Constants {
   }, {
     nameComplexExr: "Simple Left",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Simple",
       time: 15000,
@@ -99,6 +109,8 @@ export class Constants {
   }, {
     nameComplexExr: "Simple All",
     allTime: 60000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Cubit",
       time: 15000,
@@ -134,6 +146,8 @@ export class Constants {
   static readonly DefaultListExrru = [{
     nameComplexExr: "Обычная",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Обычная",
       allTime: 30000,
@@ -147,6 +161,8 @@ export class Constants {
   }, {
     nameComplexExr: "Обычная Левая",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Обычная",
       time: 15000,
@@ -166,6 +182,8 @@ export class Constants {
   }, {
     nameComplexExr: "Профессиональная",
     allTime: 60000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Локтевая",
       time: 15000,
@@ -200,6 +218,8 @@ export class Constants {
   static readonly DefaultListExruk = [{
     nameComplexExr: "Звичайна",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Звичайна",
       time: 30000,
@@ -212,6 +232,8 @@ export class Constants {
   }, {
     nameComplexExr: "Звичайна Ліва",
     allTime: 30000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Звичайна",
       time: 15000,
@@ -231,6 +253,8 @@ export class Constants {
   }, {
     nameComplexExr: "Професійна",
     allTime: 60000,
+    progressNum: 2,
+    progressPer: 2,
     Exr: [{
       text: "Ліктьова",
       time: 15000,
