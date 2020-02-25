@@ -17,6 +17,7 @@ export class Constants {
     ]
   }, {
     nameComplexExr: "Simple Left",
+    standart: true,
     allTime: 30000,
     progressNum: 2,
     progressPer: 2,
@@ -38,6 +39,7 @@ export class Constants {
     ]
   }, {
     nameComplexExr: "Simple All",
+    standart: true,
     allTime: 60000,
     progressNum: 2,
     progressPer: 2,
@@ -72,8 +74,10 @@ export class Constants {
     }
     ]
   }];
+  
   static readonly DefaultListExren = [{
     nameComplexExr: "Simple",
+    standart: true,
     allTime: 30000,
     progressNum: 2,
     progressPer: 2,
@@ -88,6 +92,7 @@ export class Constants {
     ]
   }, {
     nameComplexExr: "Simple Left",
+    standart: true,
     allTime: 30000,
     progressNum: 2,
     progressPer: 2,
@@ -109,6 +114,7 @@ export class Constants {
     ]
   }, {
     nameComplexExr: "Simple All",
+    standart: true,
     allTime: 60000,
     progressNum: 2,
     progressPer: 2,

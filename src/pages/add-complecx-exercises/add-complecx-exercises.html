@@ -7,7 +7,8 @@
 <ion-content padding>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.NameComplex' | translate}}</ion-label>
-      <ion-input placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExr"></ion-input>
+      <ion-input *ngIf="ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExrLang"></ion-input>
+      <ion-input *ngIf="!ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExr"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>

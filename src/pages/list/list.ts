@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 
@@ -18,43 +18,28 @@ export class ListPage {
   AppLanguage: any;
   listExr: any = [];
   reorderItems: boolean = false;
-  translateExer: any = {};
-  constructor(public navCtrl: NavController,
+  
+  constructor(public platform: Platform,
+              public navCtrl: NavController,
               public splashScreen: SplashScreen,
               private admobFree: AdMobFree,
               public navParams: NavParams,
               private translate: TranslateService,
               private storage: Storage) {
+                this.reorderItems = false;
   }
   ionViewDidEnter () {
     setTimeout(() => {this.splashScreen.hide();},500);
     setTimeout(() => {this.showBannerAd();},1000);
   }
   ionViewWillEnter () {
-    /*this.translate.get('DefaultListExr').subscribe(
-      value => {
-        this.translateExer = value;
-        console.log("this.translateExer=",this.translateExer);
-      });*/
-
-    this.reorderItems = false;
     this.storage.get("listExr")
       .then(res => {
         if (!!res) {
           this.listExr = res;
         } else {
-          setTimeout(() => {
-            this.storage.get("AppLanguage")
-              .then(resL => {
-                this.AppLanguage = resL;
-                this.listExr = !!res ? res : Constants["DefaultListExr"+resL];
-
-                if(typeof this.listExr == 'undefined') {
-                  this.listExr = !!res ? res : Constants["DefaultListExr"];
-                }
-                this.storage.set("listExr",this.listExr);
-              });
-           });
+          this.listExr = !!res ? res : Constants["DefaultListExr"];
+          this.storage.set("listExr",this.listExr);
       }
     });
   }

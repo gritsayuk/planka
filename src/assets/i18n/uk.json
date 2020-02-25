@@ -3,6 +3,14 @@
     "M_CALENDAR": "Прогрес",
     "M_SETINGS": "Налаштування",
 
+    "DefaultListExr": {
+      "ComplexName": {
+        "Simple": "Звичайна",
+        "Simple Left": "Звичайна Ліва",
+        "Simple All": "Професійна"
+      }
+    },
+
     "StartPage": {
       "Title": "Тренування",
       "Delete": "Видалити",
@@ -19,7 +27,7 @@
       "Time": "Час"
     },
     "AddComplecxExercisesPage": {
-      "AddComplecxExercises": "Нове тренування",
+      "AddComplecxExercises": "Редагування",
       "NameComplex": "Назва",
       "Pause": "Затримка",
       "Notification": "Нагадування",

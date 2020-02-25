@@ -3,6 +3,14 @@
   "M_CALENDAR": "Progress",
   "M_SETINGS": "Setings",
 
+  "DefaultListExr": {
+    "ComplexName": {
+      "Simple": "Simple",
+      "Simple Left": "Simple Left",
+      "Simple All": "Professional"
+    }
+  },
+
   "StartPage": {
     "Title": "Trainings",
     "Delete": "Delete",
@@ -19,7 +27,7 @@
     "Time": "Time"
   },
   "AddComplecxExercisesPage": {
-    "AddComplecxExercises": "New training",
+    "AddComplecxExercises": "Edit",
     "NameComplex": "Name",
     "Pause": "Delay",
     "Notification": "Notification",

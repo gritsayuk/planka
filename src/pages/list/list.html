@@ -25,8 +25,8 @@
      <ion-item-sliding *ngFor="let item of listExr; let i = index" >
        <ion-item (onPressing)="alert('onPressing')" >
         <ion-label (click)="runExr (i)">
-          <!--h1 [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{item.standart ? translateExer.DefaultListExr.Simple : item.nameComplexExr}}</h1-->
-          <h1 [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{item.nameComplexExr}}</h1>
+          <h1 *ngIf="item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{'DefaultListExr.ComplexName.'+item.nameComplexExr | translate}}</h1>
+          <h1 *ngIf="!item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{item.nameComplexExr}}</h1>
           <p>{{'StartPage.Count' | translate}}: {{item.Exr.length}}</p>
         </ion-label>
         <ion-text class="cust-ion-icon-center" item-end	*ngIf = "reorderItems" (click)="deleteItem(i)">

@@ -2,7 +2,8 @@
   <ion-navbar>
     <tr>
       <td>
-        <ion-title>{{ listExr.nameComplexExr }}</ion-title>
+        <ion-title *ngIf="listExr.standart" >{{'DefaultListExr.ComplexName.'+listExr.nameComplexExr | translate}}</ion-title>
+        <ion-title *ngIf="!listExr.standart" >{{ listExr.nameComplexExr }}</ion-title>
       </td>
       <td>
         <ion-icon class="icon-edit-complex" name = "create" (click) = "editItem()" *ngIf = "!reorderItems" color = "secondary"></ion-icon>
@@ -21,20 +22,6 @@
     </tr>
   </table>
 
-  <!--ion-list *ngIf="listExrDone.length > 0">
-    <ion-item   *ngFor="let item of listExrDone; let i = index">
-        <tr>
-            <td>
-                <img src="{{item.imageExr}}" class = 'imgExr'>
-            </td>
-            <td>
-              <h1>{{item.type}}</h1>
-              <h3>Count: {{item.time}}</h3>
-            </td>
-        </tr>
-    </ion-item>
-  </ion-list-->
-
   <div>
     <h1 *ngIf="ExrRun.type">
       <div *ngIf = "displayTimePreStart > -1" class = "displayTime" text-center>
@@ -43,9 +30,6 @@
       <div *ngIf = "displayTimePreStart === -1" class = "displayTime" text-center>
         <p no-margin>{{displayTime}}</p>
       </div>
-      <!--div *ngIf = "displayTimePreStart === -1" class = "displayTimeLable" text-center no-margin no-padding>
-        {{ "RunPage.displayTime" | translate }}
-      </div-->
       <table class='tbl-run-exr'><tr><td class='tbl-td-run-exr' text-right><img src="{{ExrRun.imageExr}}" class = 'imgExr'></td><td class='tbl-td-run-exr' ><h3 text-left>{{ExrRun.text}}</h3></td></tr></table>
     </h1>
   </div>

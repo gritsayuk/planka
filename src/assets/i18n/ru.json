@@ -6,7 +6,8 @@
     "DefaultListExr": {
       "ComplexName": {
         "Simple": "Обычная",
-        "Обычная": "222"
+        "Simple Left": "Обычная Левая",
+        "Simple All": "Профессиональная"
       }
     },
 
@@ -26,7 +27,7 @@
       "Time": "Время"
     },
     "AddComplecxExercisesPage": {
-      "AddComplecxExercises": "Новая Тренировка",
+      "AddComplecxExercises": "Редактирование",
       "NameComplex": "Название",
       "Pause": "Задержка",
       "Notification": "Напоминание",

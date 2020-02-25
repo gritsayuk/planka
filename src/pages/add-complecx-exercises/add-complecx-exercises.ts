@@ -26,6 +26,7 @@ export class AddComplecxExercisesPage {
   tzoffset:number;
   transtateList: any;
   translateExer: any;
+  translateComplex: any;
   actionSheetOption: any;
   setLastTime: number = 0;
 
@@ -44,20 +45,26 @@ export class AddComplecxExercisesPage {
 
     this.tzoffset = (new Date("01.01.2000")).getTimezoneOffset() * 60000; //offset in milliseconds
     this.stardDT = Date.parse(new Date("01.01.2000").toDateString()) - this.tzoffset;
-    if (navParams.data['indx'] >= 0) {
-      this.editIndex = navParams.data.indx;
-      this.storage.get("listExr")
-        .then( res => {
-          this.ComplExr = this.parseTime(res[this.editIndex], true);
-        });
-    }
   }
   ionViewWillEnter() {
     this.translate.get('ListExr').subscribe(
       value => {
         this.translateExer = value;
-      });
-  }
+      }); 
+      if (this.navParams.data['indx'] >= 0) {
+        this.editIndex = this.navParams.data.indx;
+        this.storage.get("listExr")
+          .then( res => {
+            this.ComplExr = this.parseTime(res[this.editIndex], true);
+            
+            this.translate.get('DefaultListExr').subscribe(
+              value => {
+                this.translateComplex = value;
+                this.ComplExr.nameComplexExrLang = this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]
+              });  
+          });
+      }
+    }
   ionViewDidEnter() {
     this.showBannerAd();
   }
@@ -155,6 +162,12 @@ export class AddComplecxExercisesPage {
         this.storage.get("listExr").then(res => {
           let resArr: any = [];
           resArr = !!res ? res : Constants.DefaultListExr;
+
+          if (this.ComplExr.nameComplexExrLang != this.ComplExr.nameComplexExr) {
+            this.ComplExr.nameComplexExr = this.ComplExr.nameComplexExrLang;
+            this.ComplExr.standart = false;
+          }
+
           if (this.editIndex > -1) {
             resArr[this.editIndex] = this.parseTime(this.ComplExr, false);
           } else {
