@@ -53,7 +53,7 @@
   </div>
 </ion-content>
 <ion-footer>
-    <div *ngIf="(!ExrRun.type || !hasStarted) && !(listExr.Exr.length <= 0 && listExrDone.length > 0) && displayTimePreStart === -1">
+    <div *ngIf="(!ExrRun.type || !hasStarted) && !(listExr.Exr && listExr.Exr.length <= 0 && listExrDone.length > 0) && displayTimePreStart === -1">
         <button ion-button color="light" (click)="Run()" class = "button-1" solid block default>{{ "RunPage.Start" | translate}}</button>
     </div>
 

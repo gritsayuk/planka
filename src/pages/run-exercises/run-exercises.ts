@@ -192,7 +192,8 @@ export class RunExercisesPage {
   Stop () {
     this.ExrRun = {}
     this.listExrDone = [];
-    this.listExr = JSON.parse(JSON.stringify(this.listExrIn));
+    this.listExr = JSON.parse(JSON.stringify(this.listExrIn[this.navParams.data.indx]));
+    console.log("this.listExr: ",this.listExr);
     this.initTimer();
   }
   moveExr () {

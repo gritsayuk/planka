@@ -38,7 +38,7 @@ export class ListPage {
         if (!!res) {
           this.listExr = res;
         } else {
-          this.listExr = !!res ? res : Constants["DefaultListExr"];
+          this.listExr = Constants["DefaultListExr"];
           this.storage.set("listExr",this.listExr);
       }
     });
