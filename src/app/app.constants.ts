@@ -51,11 +51,11 @@ export class Constants {
       type: "Cubit",
       imageExr: "../../assets/Exr/exr-cubit.png"
     },{
-      text: "Rigth",
+      text: "Right",
       time: 15000,
       percent: 25,
       timeStr: "2000-01-01T00:00:15Z",
-      type: "Rigth",
+      type: "Right",
       imageExr: "../../assets/Exr/exr-right.png"
     },{
       text: "Left",

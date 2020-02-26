@@ -44,7 +44,7 @@
             <img src="{{item.imageExr}}" class = 'imgExr'>
           </td>
           <td>
-            <h1>{{item.text}}</h1>
+            <h1>{{'ListExr.'+item.type | translate}}</h1>
             <h3>{{"RunPage.Time" | translate}}: {{ item.timeStr | date :  "m:s" }}</h3>   
           </td>
         </tr>
