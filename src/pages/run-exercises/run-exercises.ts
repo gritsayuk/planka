@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { NavController, NavParams, Navbar, Platform } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { Insomnia, } from '@ionic-native/insomnia';
 import { Storage } from '@ionic/storage';
 import { AddComplecxExercisesPage } from '../add-complecx-exercises/add-complecx-exercises';
-
 
 @Component({
   selector: 'page-run-exercises',
@@ -18,20 +17,22 @@ export class RunExercisesPage {
   ExrRun: any = {};
   ExrRunIndex: number = -1; 
 
-  timeInSeconds:any;
-  time:any;
-  runTimer:any;
-  hasStarted:any;
-  hasFinished:any;
-  remainingTime:any;
-  displayTime:any;
-  displayTimePreStart:number = -1;
-  tzoffset:number;
+  timeInSeconds: any;
+  time: any;
+  runTimer: any;
+  hasStarted: any;
+  hasFinished: any;
+  remainingTime: any;
+  displayTime: any;
+  displayTimePreStart: number = -1;
+  tzoffset: number;
+  motivationCnt: number;
 
   history : any = "";
   historyNum : number = -1;
   histiryExrNum : number = 0;
-  constructor(public navCtrl: NavController,
+  constructor(public platform: Platform, 
+              public navCtrl: NavController,
               private admobFree: AdMobFree, 
               public navParams: NavParams,
               private insomnia: Insomnia,
@@ -40,8 +41,21 @@ export class RunExercisesPage {
       this.listExr = {};
       this.listExr.Exr = new Array();
       this.listExrProgress = {};
+      storage.get("motivationCnt")
+        .then(res => {
+          if(!!res) {
+            this.motivationCnt = res;
+          } else {
+            this.motivationCnt = 1;
+          }
+          console.log("this.motivationCnt  ",this.motivationCnt);
+          console.log("this.motivationCnt  ",res);
+
+        });
   }
+  @ViewChild(Navbar) navBar: Navbar;
   ionViewWillEnter() {
+    this.navBar.backButtonClick = () => { this.navCtrl.popToRoot()};
     this.storage.get("listExr")
     .then( res => {
       this.listExrIn = res;
@@ -51,10 +65,13 @@ export class RunExercisesPage {
     });
 
     //Не выключаем экран
-    this.insomnia.keepAwake()
-      .then(
-        () => console.log('>>>>>>keepAwake success')
-      );
+    console.log("this.platform.is",this.platform.is("cordova"));
+    if (this.platform.is("cordova")) {
+      this.insomnia.keepAwake()
+        .then(
+          () => console.log('>>>>>>keepAwake success')
+        );
+    }
   }
   ionViewDidEnter() {
     this.showBannerAd();
@@ -62,10 +79,12 @@ export class RunExercisesPage {
   ionViewDidLeave() {
     this.Stop ();
     //Выключаем экран
-    this.insomnia.allowSleepAgain()
+    if (this.platform.is("cordova")) {
+      this.insomnia.allowSleepAgain()
       .then(
         () => console.log('>>>>>>allowSleepAgain success')
       );
+    }
   }
   addProgress() {
     let addAllTime: number = 0;
@@ -173,7 +192,7 @@ export class RunExercisesPage {
     this.admobFree.banner.config(bannerConfig);
     this.admobFree.banner.prepare().then(() => {
       // success
-    }).catch(e => alert(e));
+    }).catch(e => {});
 }
   Run () {
     if (this.ExrRunIndex != -1) {
@@ -187,7 +206,7 @@ export class RunExercisesPage {
     this.startTimer();
   }
   Close() {
-    this.navCtrl.pop();
+    this.navCtrl.popToRoot();
   }
   Stop () {
     this.ExrRun = {}
@@ -222,6 +241,12 @@ export class RunExercisesPage {
         this.listExrIn[this.navParams.data.indx].complexRunOKDT = pToday;
       }
       this.storage.set("listExr", this.listExrIn);
+
+      if (this.motivationCnt < 7) {
+        this.storage.set("motivationCnt", this.motivationCnt+1);
+      } else {
+        this.storage.set("motivationCnt", 1);
+      }
     }
   }
   initTimer() {

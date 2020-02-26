@@ -52,7 +52,7 @@ export class ListPage {
     this.admobFree.banner.config(bannerConfig);
     this.admobFree.banner.prepare().then(() => {
       // success
-    }).catch(e => alert(e));
+    }).catch(e => {});
   }
   editReorderItems () {
     this.reorderItems = !this.reorderItems;

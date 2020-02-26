@@ -6,6 +6,7 @@ export class Constants {
     allTime: 30000,
     progressNum: 2,
     progressPer: 2,
+    pause: 3,
     Exr: [{
       text: "Simple",
       time: 30000,
@@ -21,6 +22,7 @@ export class Constants {
     allTime: 30000,
     progressNum: 2,
     progressPer: 2,
+    pause: 3,
     Exr: [{
       text: "Simple",
       time: 15000,
@@ -43,6 +45,7 @@ export class Constants {
     allTime: 60000,
     progressNum: 2,
     progressPer: 2,
+    pause: 3,
     Exr: [{
       text: "Cubit",
       time: 15000,

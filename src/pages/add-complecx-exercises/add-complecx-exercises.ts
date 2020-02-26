@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AlertController, Content } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
+import { RunExercisesPage} from '../run-exercises/run-exercises';
 
 @Component({
   selector: 'page-add-complecx-exercises',
@@ -81,7 +82,7 @@ export class AddComplecxExercisesPage {
     this.admobFree.banner.config(bannerConfig);
     this.admobFree.banner.prepare().then(() => {
       // success
-    }).catch(e => alert(e));
+    }).catch(e => {});
 }
   parseTime(item, way) {
     for (let i = 0; i < item.Exr.length; i++) {
@@ -162,8 +163,7 @@ export class AddComplecxExercisesPage {
         this.storage.get("listExr").then(res => {
           let resArr: any = [];
           resArr = !!res ? res : Constants.DefaultListExr;
-
-          if (this.ComplExr.nameComplexExrLang != this.ComplExr.nameComplexExr) {
+          if (this.ComplExr.nameComplexExrLang != this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]) {
             this.ComplExr.nameComplexExr = this.ComplExr.nameComplexExrLang;
             this.ComplExr.standart = false;
           }
@@ -175,7 +175,12 @@ export class AddComplecxExercisesPage {
           }
           this.getTimeExr();
           this.storage.set ("listExr", resArr);
-          this.navCtrl.pop();
+          console.log(">>>>",this.navCtrl.getPrevious().name);
+          if (this.navCtrl.getPrevious().name == "RunExercisesPage") {
+            this.navCtrl.push(RunExercisesPage, {indx: this.navParams.data['indx']});
+          } else {
+            this.navCtrl.pop();
+          }      
         });
     }
   }

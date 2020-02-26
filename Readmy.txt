@@ -1,2 +1,8 @@
 Build .aap
 D:\GIT_PROJECT\Planka\platforms\android>gradlew bundleRelease
+
+Build apk
+PS D:\GIT_PROJECT\Planka> ionic cordova build android --prod --release
+
+Add page
+ionic generate page test --no-module
