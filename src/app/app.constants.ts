@@ -76,7 +76,62 @@ export class Constants {
       imageExr: "../../assets/Exr/exr-simple.png"
     }
     ]
-  }];
+  },
+//==============================//
+//========30_DAY_SIMPLE=========//
+//==============================//  
+{
+nameComplexExr: "30Day-simple",
+type: "days",
+standart: true,	
+startTime: 20000,
+day: 0,
+days: [	//1 day	
+    {allTime: 20000,
+    pause: 3,
+    Exr: [{
+      time: 20000,
+      percent: 100,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Simple",
+      imageExr: "../../assets/Exr/exr-simple.png"
+    }
+    ]},
+    //2 day
+    {allTime: 20000,
+    pause: 3,
+    Exr: [{
+      time: 20000,
+      percent: 100,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Simple",
+      imageExr: "../../assets/Exr/exr-simple.png"
+    }
+    ]},
+    //3 day
+    {allTime: 30000,
+    pause: 3,
+    Exr: [{
+      time: 30000,
+      percent: 100,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Simple",
+      imageExr: "../../assets/Exr/exr-simple.png"
+    }
+    ]},
+    //4 day
+    {allTime: 30000,
+    pause: 3,
+    Exr: [{
+      time: 30000,
+      percent: 100,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Simple",
+      imageExr: "../../assets/Exr/exr-simple.png"
+    }
+    ]},
+  ]
+}];
   
   static readonly ListExr = [{
     text: 'Simple',
