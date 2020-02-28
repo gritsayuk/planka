@@ -62,7 +62,14 @@
       "Title": "Налаштування",
       "Language": "Мова"
     },
-    "ListExr": {
+    "FirstPage": {
+      "title": "Ласкаво просимо!",
+      "selectTitle": "Обрати готове тренування",
+      "selectDesc": "------------------",
+      "createTitle": "Створити своє тренування",
+      "createDesc": "------------------"
+    },
+      "ListExr": {
       "Simple": "Звичайна",
       "Left": "Ліва",
       "Right": "Права",

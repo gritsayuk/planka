@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>{{'FirstPage.title' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card (click)="selectExistWorkout ()">
+    <ion-card-header>
+      <!--ion-card-subtitle>Card Subtitle</ion-card-subtitle-->
+      <ion-card-title>{{'FirstPage.selectTitle' | translate}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{'FirstPage.selectDesc' | translate}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card (click)="addComplexExr()">
+    <ion-card-header>
+      <!--ion-card-subtitle>Card Subtitle</ion-card-subtitle-->
+      <ion-card-title>{{'FirstPage.createTitle' | translate}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{'FirstPage.createDesc' | translate}}
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

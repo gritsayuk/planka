@@ -9,6 +9,7 @@ import { Storage } from '@ionic/storage';
 import { ListPage } from '../pages/list/list';
 import { SetingsPage } from '../pages/setings/setings';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { StartPage } from '../pages/start/start'
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ListPage;
+  rootPage: any = StartPage;
   pages: Array<{title: string, component: any}>;
   transtateList: any;
   language: any;
@@ -49,9 +50,7 @@ export class MyApp {
         value => {
           this.transtateList = value;
           this.pages = [
-            //{ title: 'Home', component: HomePage },
-            /*{ title: this.transtateList.List, component: ListPage },
-            { title: this.transtateList.Setings, component: SetingsPage }*/
+
             { title: "M_LIST", component: ListPage },
             { title: "M_CALENDAR", component: CalendarPage },
             { title: "M_SETINGS", component: SetingsPage }

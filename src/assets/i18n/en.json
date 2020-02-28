@@ -62,6 +62,13 @@
     "Title": "Setings",
     "Language": "Language"
   },
+  "FirstPage": {
+    "title": "Welcome!",
+    "selectTitle": "Choose exist workout",
+    "selectDesc": "------------------",
+    "createTitle": "Create your workout",
+    "createDesc": "------------------"
+  },
   "ListExr": {
     "Simple": "Simple",
     "Left": "Left",

@@ -8,6 +8,8 @@ import { RunExercisesPage } from '../pages/run-exercises/run-exercises';
 import { AddComplecxExercisesPage } from '../pages/add-complecx-exercises/add-complecx-exercises';
 import { SetingsPage } from '../pages/setings/setings';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { StartPage } from '../pages/start/start';
+import { SelectExistPage } from '../pages/select-exist/select-exist';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +33,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RunExercisesPage,
     AddComplecxExercisesPage,
     SetingsPage,
-    CalendarPage
+    CalendarPage,
+    StartPage,
+    SelectExistPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RunExercisesPage,
     AddComplecxExercisesPage,
     SetingsPage,
-    CalendarPage
+    CalendarPage,
+    StartPage,
+    SelectExistPage
   ],
   providers: [
     StatusBar,
