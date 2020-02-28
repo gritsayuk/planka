@@ -3,19 +3,34 @@ export class Constants {
   static readonly DefaultListExr = [{
     nameComplexExr: "Simple",
     standart: true,
-    allTime: 30000,
-    progressNum: 2,
+    allTime: 20000,
+    progressNum: 5,
     progressPer: 2,
-    pause: 3,
+    pause: 20,
     Exr: [{
-      text: "Simple",
-      time: 30000,
-      percent: 100,
-      timeStr: "2000-01-01T00:00:30Z",
-      type: "Simple",
-      imageExr: "../../assets/Exr/exr-simple.png"
-    }
-    ]
+      text: "Cubit",
+      time: 20000,
+      percent: 33,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Cubit",
+      imageExr: "../../assets/Exr/exr-cubit.png"
+    },
+    {
+      text: "Cubit",
+      time: 20000,
+      percent: 33,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Cubit",
+      imageExr: "../../assets/Exr/exr-cubit.png"
+    },    
+    {
+      text: "Cubit",
+      time: 20000,
+      percent: 33,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Cubit",
+      imageExr: "../../assets/Exr/exr-cubit.png"
+    }]
   }, {
     nameComplexExr: "Simple Left",
     standart: true,
@@ -76,7 +91,7 @@ export class Constants {
       imageExr: "../../assets/Exr/exr-simple.png"
     }
     ]
-  },
+  }/*,
 //==============================//
 //========30_DAY_SIMPLE=========//
 //==============================//  
@@ -129,9 +144,10 @@ days: [	//1 day
       type: "Simple",
       imageExr: "../../assets/Exr/exr-simple.png"
     }
-    ]},
+    ]}
   ]
-}];
+}*/
+];
   
   static readonly ListExr = [{
     text: 'Simple',
@@ -158,5 +174,5 @@ days: [	//1 day
     time: 15000,
     imageExr: '../../assets/Exr/exr-cubit.png',
     icon: 'exr-cubit',
-  }]
-}
+  }
+]}

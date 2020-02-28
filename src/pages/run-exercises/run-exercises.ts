@@ -263,7 +263,16 @@ export class RunExercisesPage {
 
     this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
   }
-  startTimer(p = !!this.listExr.pause && this.listExr.pause >0 ? this.listExr.pause : -1) {
+  startTimer(p = undefined) {
+    //пауза перед первым упражнением
+    if (p === undefined) {
+      if (this.ExrRunIndex == 0) {
+        p = 3;
+        console.log("p ",p)
+      } else {
+        p = !!this.listExr.pause && this.listExr.pause > 0 ? this.listExr.pause : -1
+      }
+    }
     this.displayTimePreStart = p;
     if (p >= 0) {
       setTimeout(() => {

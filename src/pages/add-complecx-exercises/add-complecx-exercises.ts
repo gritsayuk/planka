@@ -58,14 +58,14 @@ export class AddComplecxExercisesPage {
           .then( res => {
             this.ComplExr = this.parseTime(res[this.editIndex], true);
             
-            this.translate.get('DefaultListExr').subscribe(
-              value => {
-                this.translateComplex = value;
-                this.ComplExr.nameComplexExrLang = this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]
-              });  
           });
       }
-    }
+      this.translate.get('DefaultListExr').subscribe(
+        value => {
+          this.translateComplex = value;
+          this.ComplExr.nameComplexExrLang = this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]
+        });  
+}
   ionViewDidEnter() {
     this.showBannerAd();
   }
