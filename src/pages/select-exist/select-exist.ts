@@ -1,24 +1,34 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Constants } from '../../app/app.constants';
+import { Storage } from '@ionic/storage';
 
-/**
- * Generated class for the SelectExistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ListPage } from '../list/list';
+
 
 @Component({
   selector: 'page-select-exist',
   templateUrl: 'select-exist.html',
 })
 export class SelectExistPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  listExr: any = [];
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private storage: Storage) {
+    this.listExr = Constants["DefaultListExr"];
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SelectExistPage');
-  }
+  selectExr (i) {
+    this.storage.get("listExr")
+      .then(res => {
+        if(!!res) {
+          res.push(this.listExr[i]);
+          this.storage.set("listExr", res);
 
+        } else {
+          this.storage.set("listExr", new Array(this.listExr[i]));
+        }
+        this.navCtrl.push(ListPage);
+      });
+  }
 }

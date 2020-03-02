@@ -22,6 +22,7 @@ import { AdMobFree } from '@ionic-native/admob-free';
 import { Insomnia } from '@ionic-native/insomnia';
 import { CalendarModule } from "ion2-calendar";
 
+
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "./assets/i18n/", ".json");
 }

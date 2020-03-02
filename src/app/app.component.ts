@@ -9,7 +9,9 @@ import { Storage } from '@ionic/storage';
 import { ListPage } from '../pages/list/list';
 import { SetingsPage } from '../pages/setings/setings';
 import { CalendarPage } from '../pages/calendar/calendar';
-import { StartPage } from '../pages/start/start'
+import { StartPage } from '../pages/start/start';
+import { SelectExistPage } from '../pages/select-exist/select-exist';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +19,7 @@ import { StartPage } from '../pages/start/start'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = StartPage;
+  rootPage: any ;//= StartPage;
   pages: Array<{title: string, component: any}>;
   transtateList: any;
   language: any;
@@ -28,6 +30,7 @@ export class MyApp {
               //private localNotifications: LocalNotifications,
               private translate: TranslateService,
               private storage: Storage) {
+                
     this.initTranslate ();
     this.initializeApp();
   }
@@ -53,13 +56,22 @@ export class MyApp {
 
             { title: "M_LIST", component: ListPage },
             { title: "M_CALENDAR", component: CalendarPage },
-            { title: "M_SETINGS", component: SetingsPage }
+            { title: "M_SETINGS", component: SetingsPage },
+            { title: "M_SELECT_EXR", component: SelectExistPage },
           ];
         });    
       });
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      this.storage.get("listExr")
+        .then(res => {
+          if (!!res) {
+            this.rootPage = ListPage;
+          } else {
+            this.rootPage = StartPage;
+          }
+        });
       //this.initTranslate ();
 
       this.statusBar.styleDefault();
