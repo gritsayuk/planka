@@ -7,6 +7,7 @@ import { AlertController, Content } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 import { RunExercisesPage} from '../run-exercises/run-exercises';
+import { ListPage } from '../list/list';
 
 @Component({
   selector: 'page-add-complecx-exercises',
@@ -30,7 +31,7 @@ export class AddComplecxExercisesPage {
   translateComplex: any;
   actionSheetOption: any;
   setLastTime: number = 0;
-
+  
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public actionSheetController: ActionSheetController,
@@ -38,6 +39,7 @@ export class AddComplecxExercisesPage {
               private admobFree: AdMobFree,
               private translate: TranslateService,
               public alertController: AlertController) {
+    this.editIndex = this.navParams.data['indx'];
     translate.get('AddComplecxExercisesPage')
       .subscribe(value => {
           this.transtateList = value;
@@ -52,19 +54,25 @@ export class AddComplecxExercisesPage {
       value => {
         this.translateExer = value;
       }); 
-      if (this.navParams.data['indx'] >= 0) {
-        this.editIndex = this.navParams.data.indx;
+      if (this.editIndex >= 0) {
         this.storage.get("listExr")
           .then( res => {
             this.ComplExr = this.parseTime(res[this.editIndex], true);
-            
+            //Получаем перевод названия комплекса
+            this.translate.get('DefaultListExr').subscribe(
+              value => {
+                this.translateComplex = value;
+                this.ComplExr.nameComplexExrLang = this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]
+              });        
           });
+      } else {
+        //Получаем перевод названия комплекса
+        this.translate.get('DefaultListExr').subscribe(
+          value => {
+            this.translateComplex = value;
+            this.ComplExr.nameComplexExrLang = this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]
+          });        
       }
-      this.translate.get('DefaultListExr').subscribe(
-        value => {
-          this.translateComplex = value;
-          this.ComplExr.nameComplexExrLang = this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]
-        });  
 }
   ionViewDidEnter() {
     this.showBannerAd();
@@ -150,39 +158,51 @@ export class AddComplecxExercisesPage {
     console.log(">>>>>this.ComplExr>>>",this.ComplExr);
   }
   Save() {
+      if (this.ComplExr.Exr.length == 0) {
+        let pAlert = this.alertController.create({
+          //title: 'Low battery',
+          subTitle: this.transtateList.Alert2,
+          buttons: ['OK']
+        });
+        pAlert.present();
+        return;
+      }
       if (this.ComplExr.nameComplexExr == "") {
         let pAlert = this.alertController.create({
           //title: 'Low battery',
           subTitle: this.transtateList.Alert1,
           buttons: ['OK']
         });
-    
         pAlert.present();
-        //alert (this.transtateList.Alert1);
-      } else {
-        this.storage.get("listExr").then(res => {
-          let resArr: any = [];
-          resArr = !!res ? res : Constants.DefaultListExr;
-          if (this.ComplExr.nameComplexExrLang != this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]) {
-            this.ComplExr.nameComplexExr = this.ComplExr.nameComplexExrLang;
-            this.ComplExr.standart = false;
-          }
+        return;
+      } 
+      this.storage.get("listExr").then(res => {
+        let resArr: any = [];
+        resArr = !!res ? res : Constants.DefaultListExr;
+        console.log("this.translateComplex",this.translateComplex);
+        if (!this.ComplExr.nameComplexExr || this.ComplExr.nameComplexExrLang != this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]) {
+          this.ComplExr.nameComplexExr = this.ComplExr.nameComplexExrLang;
+          this.ComplExr.standart = false;
+        }
 
-          if (this.editIndex > -1) {
-            resArr[this.editIndex] = this.parseTime(this.ComplExr, false);
-          } else {
-            resArr.push(this.parseTime(this.ComplExr, false));
-          }
-          this.getTimeExr();
-          this.storage.set ("listExr", resArr);
-          console.log(">>>>",this.navCtrl.getPrevious().name);
-          if (this.navCtrl.getPrevious().name == "RunExercisesPage") {
-            this.navCtrl.push(RunExercisesPage, {indx: this.navParams.data['indx']});
-          } else {
+        if (this.editIndex > -1) {
+          resArr[this.editIndex] = this.parseTime(this.ComplExr, false);
+        } else {
+          resArr.push(this.parseTime(this.ComplExr, false));
+        }
+        this.getTimeExr();
+        this.storage.set ("listExr", resArr);
+        if (!!this.navCtrl.getPrevious() && this.navCtrl.getPrevious().name == "RunExercisesPage") {
+          this.navCtrl.push(RunExercisesPage, {indx: this.editIndex});
+        } else {
+          if (!!this.navCtrl.getPrevious()){
             this.navCtrl.pop();
-          }      
-        });
-    }
+          } else {
+            this.navCtrl.setRoot(ListPage);
+          }
+      
+        }      
+      });
   }
 
   deleteItem(indx) {
@@ -195,6 +215,10 @@ export class AddComplecxExercisesPage {
     this.ComplExr.Exr.splice(indexes.to, 0, element);
   }
   Cancel() {
-    this.navCtrl.pop();
+    if (!!this.navCtrl.getPrevious()){
+      this.navCtrl.pop();
+    } else {
+      this.navCtrl.setRoot(ListPage);
+    }
   }
 }

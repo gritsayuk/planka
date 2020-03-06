@@ -31,4 +31,7 @@ export class SelectExistPage {
         this.navCtrl.push(ListPage);
       });
   }
+  Close() {
+    this.navCtrl.setRoot(ListPage);
+  }
 }

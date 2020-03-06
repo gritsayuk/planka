@@ -3,6 +3,7 @@
   "M_CALENDAR": "Progress",
   "M_SETINGS": "Setings",
   "M_SELECT_EXR": "Add Exist Trainings",
+  "M_ADD_EXR": "Create  Training", 
 
   "DefaultListExr": {
     "ComplexName": {
@@ -29,6 +30,7 @@
   },
   "AddComplecxExercisesPage": {
     "AddComplecxExercises": "Edit",
+    "NewComplecxExercises": "New",
     "NameComplex": "Name",
     "Pause": "Delay",
     "Notification": "Notification",
@@ -38,6 +40,7 @@
     "Save": "Save",
     "Cancel": "Cancel",
     "Alert1": "Please set name training!",
+    "Alert2": "Please add exercise!",
     "Time-lable": "min:sec",
     "ProgressLb": "Progress (sec.)",
     "ProgressNum": "Quantity",
@@ -77,6 +80,9 @@
     "Cubit": "Cubit",
     "Cancel": "Cancel",
     "Title": "Exersises"
+  },
+  "SelectExistPage": {
+    "title": "Select exist exersises"
   },
   "Motivation": {
     "1": "WELL DONE !!!",

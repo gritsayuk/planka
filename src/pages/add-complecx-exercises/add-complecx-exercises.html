@@ -1,6 +1,7 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{'AddComplecxExercisesPage.AddComplecxExercises' | translate}}</ion-title>
+  <ion-navbar text-center>
+    <ion-title *ngIf="editIndex >= 0">{{'AddComplecxExercisesPage.AddComplecxExercises' | translate}}</ion-title>
+    <ion-title *ngIf="!editIndex || editIndex == -1">{{'AddComplecxExercisesPage.NewComplecxExercises' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 

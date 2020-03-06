@@ -3,6 +3,7 @@
     "M_CALENDAR": "Прогрес",
     "M_SETINGS": "Налаштування",
     "M_SELECT_EXR": "Додати тренування",
+    "M_ADD_EXR": "Створити тренування", 
 
     "DefaultListExr": {
       "ComplexName": {
@@ -29,6 +30,7 @@
     },
     "AddComplecxExercisesPage": {
       "AddComplecxExercises": "Редагування",
+      "NewComplecxExercises": "Створення",
       "NameComplex": "Назва",
       "Pause": "Затримка",
       "Notification": "Нагадування",
@@ -38,6 +40,7 @@
       "Save": "Зберегти",
       "Cancel": "Відмінити",
       "Alert1": "Введіть будьласка назву тренування!",
+      "Alert2": "Додайте будьласка вправу в тренування!",
       "Time-lable": "хв:сек",
       "ProgressLb": "Прогрес (сек.)",
       "ProgressNum": "Кількість",
@@ -77,6 +80,9 @@
       "Cubit": "Ліктьова",
       "Cancel": "Відмінити",
       "Title": "Тренування"
+    },
+    "SelectExistPage": {
+      "title": "Вибір готового тренування"
     },
     "Motivation": {
       "1": "МОЛОДЕЦЬ !!!",
