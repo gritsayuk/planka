@@ -3,7 +3,8 @@
   "M_CALENDAR": "Progress",
   "M_SETINGS": "Setings",
   "M_SELECT_EXR": "Add Exist Trainings",
-  "M_ADD_EXR": "Create  Training", 
+  "M_ADD_EXR": "Create  Training",
+  "M_TEST_EXR": "Testing",
 
   "DefaultListExr": {
     "ComplexName": {

@@ -12,6 +12,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { StartPage } from '../pages/start/start';
 import { SelectExistPage } from '../pages/select-exist/select-exist';
 import { AddComplecxExercisesPage } from '../pages/add-complecx-exercises/add-complecx-exercises';
+import { TestExercisesPage } from '../pages/test-exercises/test-exercises';
 
 
 @Component({
@@ -59,7 +60,8 @@ export class MyApp {
             { title: "M_CALENDAR", component: CalendarPage },
             { title: "M_SETINGS", component: SetingsPage },
             { title: "M_SELECT_EXR", component: SelectExistPage },
-            { title: "M_ADD_EXR", component: AddComplecxExercisesPage }
+            { title: "M_ADD_EXR", component: AddComplecxExercisesPage },
+            { title: "M_TEST_EXR", component: TestExercisesPage }
           ];
         });    
       });
