@@ -13,7 +13,13 @@
         "Simple All": "Профессиональная"
       }
     },
-
+     "TestPage": {
+      "title": "Тестирование",
+      "start": "Начать",
+      "stop": "Остановить",
+      "save": "",
+      "restart": ""
+     },
      "StartPage": {
       "Title": "Тренировки",
       "Delete": "Удалить",

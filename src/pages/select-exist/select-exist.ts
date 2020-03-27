@@ -28,7 +28,7 @@ export class SelectExistPage {
         } else {
           this.storage.set("listExr", new Array(this.listExr[i]));
         }
-        this.navCtrl.push(ListPage);
+        this.navCtrl.setRoot(ListPage);
       });
   }
   Close() {
