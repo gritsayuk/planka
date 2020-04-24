@@ -14,6 +14,14 @@
       "Simple All": "Professional"
     }
   },
+  "TestPage": {
+    "title": "Examination",
+    "start": "Start",
+    "stop": "Stop",
+    "save": "Save",
+    "restart": "Reset",
+    "skip": "Skip"
+   },
 
   "StartPage": {
     "Title": "Trainings",
