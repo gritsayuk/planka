@@ -4,6 +4,7 @@ import { Constants } from '../../app/app.constants';
 import { Storage } from '@ionic/storage';
 
 import { ListPage } from '../list/list';
+import { TestExercisesPage } from '../test-exercises/test-exercises';
 
 
 @Component({
@@ -19,18 +20,8 @@ export class SelectExistPage {
   }
 
   selectExr (i) {
-    this.storage.get("listExr")
-      .then(res => {
-        if(!!res) {
-          res.push(this.listExr[i]);
-          this.storage.set("listExr", res);
-
-        } else {
-          this.storage.set("listExr", new Array(this.listExr[i]));
-        }
-        this.navCtrl.setRoot(ListPage);
-      });
-  }
+    this.navCtrl.push(TestExercisesPage,{"listExr": this.listExr[i].TestExer, "selectComplex": i});
+    }
   Close() {
     this.navCtrl.setRoot(ListPage);
   }

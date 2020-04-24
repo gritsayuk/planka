@@ -249,20 +249,20 @@ export class RunExercisesPage {
       }
     }
   }
-  initTimer() {
-    // Pomodoro is usually for 25 minutes
-    if (!this.timeInSeconds) {
-      this.timeInSeconds = !!this.ExrRun ? this.ExrRun.time : 0;
+    initTimer() {
+      // Pomodoro is usually for 25 minutes
+      if (!this.timeInSeconds) {
+        this.timeInSeconds = !!this.ExrRun ? this.ExrRun.time : 0;
+      }
+
+      this.time = this.timeInSeconds;
+      this.runTimer = false;
+      this.hasStarted = false;
+      this.hasFinished = false;
+      this.remainingTime = this.timeInSeconds;
+
+      this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
     }
-
-    this.time = this.timeInSeconds;
-    this.runTimer = false;
-    this.hasStarted = false;
-    this.hasFinished = false;
-    this.remainingTime = this.timeInSeconds;
-
-    this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
-  }
   startTimer(p = undefined) {
     //пауза перед первым упражнением
     if (p === undefined) {

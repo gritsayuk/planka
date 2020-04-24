@@ -1,6 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>{{'TestPage.title' | translate}}</ion-title>
+    <!--ion-title text-center>{{'TestPage.title' | translate}}</ion-title-->
+
+    <table class="header-tbl">
+      <tr >
+        <td>
+          <ion-title text-center>{{'TestPage.title' | translate}}</ion-title>
+        </td>
+        <td *ngIf="selectComplex == -1" class = "icon-close">
+          <ion-icon color = "primary" name = "close" (click) = "Close()"></ion-icon>
+        </td>
+      </tr>
+    </table>
   </ion-navbar>
 </ion-header>
 
@@ -27,10 +38,15 @@
       <table class='tbl-run-exr'><tr><td class='tbl-td-run-exr' text-right><img src="{{testExr.imageExr}}" class = 'imgExrTime'></td><td class='tbl-td-run-exr' ><h3 text-left>{{'ListExr.'+testExr.type | translate}}</h3></td></tr></table>
     </h1>
     <div>
-      <button *ngIf="!runFlg" ion-button color="light" (click)="Run()" class = "button-1" solid block default>{{ "TestPage.start" | translate}}</button>
-      <button *ngIf="runFlg" ion-button color="light" (click)="Stop()" class = "button-1" solid block default>{{ "TestPage.stop" | translate}}</button>
-      <button *ngIf="runFlg" ion-button color="light" (click)="Save()" class = "button-1" solid block default>{{ "TestPage.save" | translate}}</button>
-      <button *ngIf="runFlg" ion-button color="light" (click)="Restart()" class = "button-1" solid block default>{{ "TestPage.restart" | translate}}</button>
+      
+      <button *ngIf="runFlg == 0" ion-button color="light" (click)="Run()" class = "button-1" solid block default>{{ "TestPage.start" | translate}}</button>
+      <button *ngIf="runFlg == 1" ion-button color="light" (click)="Stop()" class = "button-1" solid block default>{{ "TestPage.stop" | translate}}</button>
+      <button *ngIf="runFlg == 2" ion-button color="light" (click)="Save()" class = "button-1" solid block default>{{ "TestPage.save" | translate}}</button>
+      <button *ngIf="runFlg == 1 || runFlg == 2" ion-button color="light" (click)="Restart()" class = "button-1" solid block default>{{ "TestPage.restart" | translate}}</button>
     </div>
 </div>
+
 </ion-content>
+<ion-footer>
+  <button *ngIf="selectExr && selectComplex > -1" ion-button color="light" (click)="Skip()" class = "button-1" solid block default>{{ "TestPage.skip" | translate}}</button>
+</ion-footer>

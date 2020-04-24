@@ -8,7 +8,8 @@
  
     "DefaultListExr": {
       "ComplexName": {
-        "Simple": "Обычная",
+        "Simple": "Легкая",
+        "Normal": "Обычная",
         "Simple Left": "Обычная Левая",
         "Simple All": "Профессиональная"
       }
@@ -17,8 +18,9 @@
       "title": "Тестирование",
       "start": "Начать",
       "stop": "Остановить",
-      "save": "",
-      "restart": ""
+      "save": "Сохранить",
+      "restart": "Сбросить",
+      "skip": "Пропустить"
      },
      "StartPage": {
       "Title": "Тренировки",

@@ -30,30 +30,41 @@ export class Constants {
       timeStr: "2000-01-01T00:00:20Z",
       type: "Cubit",
       imageExr: "../../assets/Exr/exr-cubit.png"
-    }]
-  }, {
-    nameComplexExr: "Simple Left",
+    }],
+  TestExer:["Cubit"]
+  }, 
+  {
+    nameComplexExr: "Normal",
     standart: true,
-    allTime: 30000,
-    progressNum: 2,
+    allTime: 20000,
+    progressNum: 5,
     progressPer: 2,
-    pause: 3,
+    pause: 20,
     Exr: [{
       text: "Simple",
-      time: 15000,
-      percent: 50,
-      timeStr: "2000-01-01T00:00:15Z",
+      time: 20000,
+      percent: 33,
+      timeStr: "2000-01-01T00:00:20Z",
       type: "Simple",
       imageExr: "../../assets/Exr/exr-simple.png"
-    },{
-      text: "Left",
-      time: 15000,
-      percent: 50,
-      timeStr: "2000-01-01T00:00:15Z",
-      type: "Left",
-      imageExr: "../../assets/Exr/exr-left.png"
     },
-    ]
+    {
+      text: "Simple",
+      time: 20000,
+      percent: 33,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Simple",
+      imageExr: "../../assets/Exr/exr-simple.png"
+    },    
+    {
+      text: "Simple",
+      time: 20000,
+      percent: 33,
+      timeStr: "2000-01-01T00:00:20Z",
+      type: "Simple",
+      imageExr: "../../assets/Exr/exr-simple.png"
+    }],
+  TestExer:["Simple"]
   }, {
     nameComplexExr: "Simple All",
     standart: true,
@@ -90,7 +101,8 @@ export class Constants {
       type: "Simple",
       imageExr: "../../assets/Exr/exr-simple.png"
     }
-    ]
+    ],
+    TestExer:["Simple"]
   }/*,
 //==============================//
 //========30_DAY_SIMPLE=========//

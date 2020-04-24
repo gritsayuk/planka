@@ -8,7 +8,8 @@
 
     "DefaultListExr": {
       "ComplexName": {
-        "Simple": "Звичайна",
+        "Simple": "Легка",
+        "Normal": "Звичайна",
         "Simple Left": "Звичайна Ліва",
         "Simple All": "Професійна"
       }
