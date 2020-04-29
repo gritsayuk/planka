@@ -5,25 +5,30 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card (click)="selectExistWorkout ()">
+  <ion-card class="card-cust" (click)="selectExistWorkout ()" >
     <ion-card-header>
       <!--ion-card-subtitle>Card Subtitle</ion-card-subtitle-->
-      <ion-card-title>{{'FirstPage.selectTitle' | translate}}</ion-card-title>
+      <ion-card-title color="primary">{{'FirstPage.selectTitle' | translate}}</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
       {{'FirstPage.selectDesc' | translate}}
     </ion-card-content>
   </ion-card>
-  <ion-card (click)="addComplexExr()">
+  <ion-card class="card-cust" (click)="addComplexExr()">
     <ion-card-header>
       <!--ion-card-subtitle>Card Subtitle</ion-card-subtitle-->
-      <ion-card-title>{{'FirstPage.createTitle' | translate}}</ion-card-title>
+      <ion-card-title color="primary">{{'FirstPage.createTitle' | translate}}</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
       {{'FirstPage.createDesc' | translate}}
     </ion-card-content>
   </ion-card>
-  
+  <div class = "img-div">
+    <img src="../../assets/Exr/exr-cubit.png" class = 'img'>
+    <img src="../../assets/Exr/exr-left.png" class = 'img'>
+    <img src="../../assets/Exr/exr-right.png" class = 'img'>
+    <img src="../../assets/Exr/exr-simple.png" class = 'img'>
+  </div>
 </ion-content>
