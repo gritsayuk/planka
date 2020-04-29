@@ -10,4 +10,13 @@ page-start {
  .card-cust {
     border-radius: 15px;
  }
+ .card-cust ion-card-title {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 2rem;
+ }
+ .card-cust ion-card-content {
+    padding-top: 5px;
+    font-size: 1.3rem;
+ }
 }
