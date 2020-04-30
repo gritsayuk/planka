@@ -21,7 +21,42 @@
 </ion-header>
 
 <ion-content>
-   <ion-list *ngIf="listExr.length > 0" side = "start" reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
+  <div *ngIf="listExr.length > 0">
+    <ion-reorder-group reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
+    <ion-card class="card-cust" *ngFor="let item of listExr; let i = index">
+      <ion-card-header (click)="runExr (i)">
+          <ion-card-title color="primary" *ngIf="item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{'DefaultListExr.ComplexName.'+item.nameComplexExr | translate}}</ion-card-title>
+          <ion-card-title *ngIf="!item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{item.nameComplexExr}}</ion-card-title>
+          <ion-card-subtitle>
+            <div class = "img-div">
+              <img *ngFor="let itemImg of item.Exr;" src="{{itemImg.imageExr}}" class = 'img'>
+            </div>
+          </ion-card-subtitle>
+      </ion-card-header>
+    
+    <ion-card-content>
+        {{'StartPage.Count' | translate}}: {{item.Exr.length}}
+        <table class="edit-tbl">
+          <tr>
+            <td>
+              <ion-text class="cust-ion-icon-center" item-end	*ngIf = "reorderItems" (click)="deleteItem(i)">
+                <ion-icon slot="center" name="trash" color = "danger"></ion-icon>
+                <p class="menu-item">{{'StartPage.Delete' | translate}}</p>
+              </ion-text>
+            </td>
+            <td></td>
+            <td>
+              <ion-text class="cust-ion-icon-center" item-end	*ngIf = "reorderItems" (click)="edItem(i)">
+                <ion-icon name="create" color = "secondary"></ion-icon><p class="menu-item">{{'StartPage.Edit' | translate}}</p>
+              </ion-text>
+            </td>
+          </tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+  </ion-reorder-group>
+  </div>
+<!--ion-list *ngIf="listExr.length > 0" side = "start" reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
      <ion-item-sliding *ngFor="let item of listExr; let i = index" >
        <ion-item (onPressing)="alert('onPressing')" >
         <ion-label (click)="runExr (i)">
@@ -38,9 +73,6 @@
         </ion-text>
        </ion-item>
      </ion-item-sliding>
-  </ion-list>
+  </ion-list-->
 
-  <!--ion-fab bottom right>
-    <button ion-fab (click)="addComplexExr()" color = "secondary"><ion-icon name="add"></ion-icon></button>
-  </ion-fab-->
 </ion-content>

@@ -17,4 +17,32 @@ page-list {
   .text-lable-def {
     color: #000;
   }
+/*Card*/
+  .card-cust {
+    border-radius: 15px;
+ }
+.img {
+    width: 30px;
+    display: inline;
+    padding-right: 5px;
+}
+.img-div {
+    padding-left: 10px;
+    padding-top: 25px;
+    padding-top: 0;
+}
+.card-cust ion-card-header {
+    padding-bottom: 0;
+}
+.card-cust ion-card-content {
+    padding-top: 0;
+}
+.edit-tbl {
+  margin-left: auto;
+}
+.edit-tbl td {
+ padding-right: 15px;
+ text-align: center;
+}
+
 }

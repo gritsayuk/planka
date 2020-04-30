@@ -55,22 +55,11 @@
     <ion-card-content>
       <div class = "img-div">
         <img src="../../assets/Exr/exr-cubit.png" class = 'img'>
-        <img src="../../assets/Exr/exr-simple.png" class = 'img'>
         <img src="../../assets/Exr/exr-right.png" class = 'img'>
         <img src="../../assets/Exr/exr-left.png" class = 'img'>
+        <img src="../../assets/Exr/exr-simple.png" class = 'img'>
       </div>
       {{'DefaultListExr.ComplexName.'+listExr[2].nameComplexExr+' Desc' | translate}}
     </ion-card-content>
   </ion-card>
-
-  <!--ion-list side = "start">
-    <ion-item *ngFor="let item of listExr; let i = index">
-      <ion-label (click)="selectExr (i)">
-        <h1 *ngIf="item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{'DefaultListExr.ComplexName.'+item.nameComplexExr | translate}}</h1>
-        <h1 *ngIf="!item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{item.nameComplexExr}}</h1>
-        <p>{{'StartPage.Count' | translate}}: {{item.Exr.length}}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list-->
-
 </ion-content>
