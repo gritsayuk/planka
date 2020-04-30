@@ -14,6 +14,16 @@
       "Simple All": "Professional"
     }
   },
+  "FirstPage": {
+    "title": "Welcome!",
+    "selectTitle": "Choose workout",
+    "selectDesc": "------------------",
+    "createTitle": "Create workout",
+    "createDesc": "------------------"
+  },
+  "SelectExistPage": {
+    "title": "Select exersises"
+  },
   "TestPage": {
     "title": "Examination",
     "start": "Start",
@@ -76,13 +86,6 @@
     "Title": "Setings",
     "Language": "Language"
   },
-  "FirstPage": {
-    "title": "Welcome!",
-    "selectTitle": "Choose exist workout",
-    "selectDesc": "------------------",
-    "createTitle": "Create your workout",
-    "createDesc": "------------------"
-  },
   "ListExr": {
     "Simple": "Simple",
     "Left": "Left",
@@ -90,9 +93,6 @@
     "Cubit": "Cubit",
     "Cancel": "Cancel",
     "Title": "Exersises"
-  },
-  "SelectExistPage": {
-    "title": "Select exist exersises"
   },
   "Motivation": {
     "1": "WELL DONE !!!",

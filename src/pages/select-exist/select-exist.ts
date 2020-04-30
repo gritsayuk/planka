@@ -13,9 +13,11 @@ import { TestExercisesPage } from '../test-exercises/test-exercises';
 })
 export class SelectExistPage {
   listExr: any = [];
+  prePage:string = "";
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private storage: Storage) {
+    this.prePage = navCtrl.last().name;
     this.listExr = Constants["DefaultListExr"];
   }
 

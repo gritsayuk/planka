@@ -6,4 +6,23 @@ page-select-exist {
         font-size: x-large;
         padding-right: 10px;
      }
+    .card-cust {
+        border-radius: 15px;
+     }
+    .img {
+        width: 30px;
+        display: inline;
+    }
+    .img-div {
+        padding-left: 10px;
+        padding-top: 25px;
+        padding-top: 0;
+    }
+    .card-cust ion-card-header {
+        padding-bottom: 0;
+    }
+    .card-cust ion-card-content {
+        padding-top: 0;
+    }
+   
 }
