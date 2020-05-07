@@ -45,4 +45,22 @@ page-list {
  text-align: center;
 }
 
+.cust-fab{
+  padding-top: 10px;
+  display: inline-flex;
+}
+.cust-fab button {
+  width: 30px;
+  height: 30px;
+}
+.cust-fab ion-fab {
+  position: relative;
+  padding-right: 5px;
+}
+.fab-green {
+  background-color: green;
+}
+.fab-grey {
+  background-color: grey;
+}
 }

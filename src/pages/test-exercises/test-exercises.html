@@ -17,12 +17,12 @@
 
 <ion-content padding>
   <div *ngIf="!selectExr">
-    <ion-card *ngFor="let item of listExr; let i index" (click)="selectTest(item)">
+    <ion-card *ngFor="let item of listExr; let i index" (click)="selectTest(item)" class="card-cust">
       <ion-card-header>
         <div>
           <ion-card-title>
               <img src="{{item.imageExr}}" class='imgExr'>
-              <span class='imgExrTitle'>{{item.text}}</span>
+              <span class='imgExrTitle'>{{'ListExr.'+item.type | translate}}</span>
           </ion-card-title>
         </div>
       </ion-card-header>

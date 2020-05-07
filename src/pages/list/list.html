@@ -35,7 +35,14 @@
       </ion-card-header>
     
     <ion-card-content>
+      <div  class="cust-fab">
+        <ion-fab *ngFor="let pDay of item.historySevenDay" >
+          <button ion-fab [ngClass]="pDay.status == 0 ? 'fab-grey' : 'fab-green'">{{pDay.day}}</button>
+        </ion-fab>
+      </div>
+      <div>
         {{'StartPage.Count' | translate}}: {{item.Exr.length}}
+      </div>
         <table class="edit-tbl">
           <tr>
             <td>
@@ -56,6 +63,7 @@
     </ion-card>
   </ion-reorder-group>
   </div>
+  
 <!--ion-list *ngIf="listExr.length > 0" side = "start" reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
      <ion-item-sliding *ngFor="let item of listExr; let i = index" >
        <ion-item (onPressing)="alert('onPressing')" >

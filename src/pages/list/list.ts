@@ -18,7 +18,9 @@ export class ListPage {
   AppLanguage: any;
   listExr: any = [];
   reorderItems: boolean = false;
-  
+  historySeven: any = [];
+  historyAll: any; 
+  thisDay: number;  
   constructor(public platform: Platform,
               public navCtrl: NavController,
               public splashScreen: SplashScreen,
@@ -26,7 +28,30 @@ export class ListPage {
               public navParams: NavParams,
               private translate: TranslateService,
               private storage: Storage) {
-                this.reorderItems = false;
+  this.reorderItems = false;
+    let thisDate = new Date();
+    let tmpDate = new Date();
+    tmpDate.setHours(0);
+    tmpDate.setMinutes(0);
+    tmpDate.setSeconds(0);
+    tmpDate.setMilliseconds(0);
+    this.thisDay = thisDate.getDay();
+    let j = 1;
+    tmpDate.setDate(tmpDate.getDate()-7);
+    for(var i = 1; i <= 7; i++) {
+      tmpDate.setDate(tmpDate.getDate()+1);
+      if(this.thisDay + i <= 7) {
+        this.historySeven.push({"day": this.thisDay + i,
+                                "date": tmpDate.getTime(),
+                                "status": 0
+                              })
+      } else {
+        this.historySeven.push({"day": j++,
+                                "date": tmpDate.getTime(),
+                                "status": 0
+                              });
+      }
+    }
   }
   ionViewDidEnter () {
     setTimeout(() => {this.splashScreen.hide();},500);
@@ -37,12 +62,39 @@ export class ListPage {
       .then(res => {
         if (!!res) {
           this.listExr = res;
+          for(var i in this.listExr){
+            this.listExr[i].historySevenDay = this.getHistory(this.listExr[i].nameComplexExr);
+          }
         } else {
           this.listExr = Constants["DefaultListExr"];
           this.storage.set("listExr",this.listExr);
-      }
+        }
     });
   }
+
+  getHistory(complexName) {
+    let thisHistorySeven = JSON.parse(JSON.stringify(this.historySeven));
+    this.storage.get("history")
+      .then(res => {
+        this.historyAll = res;
+        if (!!this.historyAll) {
+          for(var i in this.historySeven) {
+            console.log("URA!!!!",this.historySeven[i].date);
+            if (!!this.historyAll.days[this.historySeven[i].date]) {
+              for(var j in this.historyAll.days[this.historySeven[i].date]) {
+                if (this.historyAll.days[this.historySeven[i].date][j].nameComplexExr === complexName && this.historyAll.days[this.historySeven[i].date][j].AllTimeOK > 0) {
+                  thisHistorySeven[i].status = 1;
+                  console.log("URA!!!!");
+                }
+              }
+              console.log(thisHistorySeven);
+            }
+          }          
+        }
+    });
+    return thisHistorySeven;
+  }
+
   showBannerAd() {
     let bannerConfig: AdMobFreeBannerConfig = {
       //isTesting: true, // Remove in production
