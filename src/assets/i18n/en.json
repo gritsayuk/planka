@@ -16,10 +16,10 @@
   },
   "FirstPage": {
     "title": "Welcome!",
-    "selectTitle": "Choose workout",
-    "selectDesc": "------------------",
+    "selectTitle": "Choose a workout",
+    "selectDesc": "Choose a workout according to the difficulty level from the three offered, then you will pass a test that will select the optimal training time for you.",
     "createTitle": "Create workout",
-    "createDesc": "------------------"
+    "createDesc": "Create a new workout and customize it for yourself. Four types of planks are available for you. Set the duration of each exercise, the rest time between exercises and the progress time."
   },
   "SelectExistPage": {
     "title": "Select exersises"

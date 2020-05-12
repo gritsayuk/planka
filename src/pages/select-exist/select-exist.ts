@@ -22,6 +22,8 @@ export class SelectExistPage {
   }
 
   selectExr (i) {
+    let dtToId = new Date()
+    this.listExr[i].id = dtToId.getTime();
     this.navCtrl.push(TestExercisesPage,{"listExr": this.listExr[i].TestExer, "selectComplex": i});
     }
   Close() {

@@ -63,7 +63,7 @@ export class ListPage {
         if (!!res) {
           this.listExr = res;
           for(var i in this.listExr){
-            this.listExr[i].historySevenDay = this.getHistory(this.listExr[i].nameComplexExr);
+            this.listExr[i].historySevenDay = this.getHistory(this.listExr[i].id);
           }
         } else {
           this.listExr = Constants["DefaultListExr"];
@@ -72,7 +72,7 @@ export class ListPage {
     });
   }
 
-  getHistory(complexName) {
+  getHistory(complexId) {
     let thisHistorySeven = JSON.parse(JSON.stringify(this.historySeven));
     this.storage.get("history")
       .then(res => {
@@ -82,7 +82,7 @@ export class ListPage {
             console.log("URA!!!!",this.historySeven[i].date);
             if (!!this.historyAll.days[this.historySeven[i].date]) {
               for(var j in this.historyAll.days[this.historySeven[i].date]) {
-                if (this.historyAll.days[this.historySeven[i].date][j].nameComplexExr === complexName && this.historyAll.days[this.historySeven[i].date][j].AllTimeOK > 0) {
+                if (this.historyAll.days[this.historySeven[i].date][j].id === complexId && this.historyAll.days[this.historySeven[i].date][j].AllTimeOK > 0) {
                   thisHistorySeven[i].status = 1;
                   console.log("URA!!!!");
                 }

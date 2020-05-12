@@ -158,6 +158,8 @@ export class AddComplecxExercisesPage {
     console.log(">>>>>this.ComplExr>>>",this.ComplExr);
   }
   Save() {
+      let dtToId = new Date()
+      this.ComplExr.id = dtToId.getTime();
       if (this.ComplExr.Exr.length == 0) {
         let pAlert = this.alertController.create({
           //title: 'Low battery',
@@ -178,7 +180,8 @@ export class AddComplecxExercisesPage {
       } 
       this.storage.get("listExr").then(res => {
         let resArr: any = [];
-        resArr = !!res ? res : Constants.DefaultListExr;
+        //resArr = !!res ? res : Constants.DefaultListExr;
+        resArr = !!res ? res : [];
         console.log("this.translateComplex",this.translateComplex);
         if (!this.ComplExr.nameComplexExr || this.ComplExr.nameComplexExrLang != this.translateComplex.ComplexName[this.ComplExr.nameComplexExr]) {
           this.ComplExr.nameComplexExr = this.ComplExr.nameComplexExrLang;
@@ -196,7 +199,11 @@ export class AddComplecxExercisesPage {
           this.navCtrl.push(RunExercisesPage, {indx: this.editIndex});
         } else {
           if (!!this.navCtrl.getPrevious()){
-            this.navCtrl.pop();
+            if(this.navCtrl.getPrevious().name == "StartPage") {
+              this.navCtrl.setRoot(ListPage);
+            } else {
+              this.navCtrl.pop();
+            }
           } else {
             this.navCtrl.setRoot(ListPage);
           }

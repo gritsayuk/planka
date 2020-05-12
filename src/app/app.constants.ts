@@ -1,6 +1,7 @@
 export class Constants {
 
   static readonly DefaultListExr = [{
+    id: "1",
     nameComplexExr: "Simple",
     standart: true,
     allTime: 20000,
@@ -34,6 +35,7 @@ export class Constants {
   TestExer:["Cubit"]
   }, 
   {
+    id: "2",
     nameComplexExr: "Normal",
     standart: true,
     allTime: 20000,
@@ -66,6 +68,7 @@ export class Constants {
     }],
   TestExer:["Simple"]
   }, {
+    id: "3",
     nameComplexExr: "Simple All",
     standart: true,
     allTime: 60000,
