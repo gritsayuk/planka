@@ -26,6 +26,9 @@ export class MyApp {
   transtateList: any;
   language: any;
 
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
+
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
@@ -66,8 +69,27 @@ export class MyApp {
         });    
       });
   }
+  backButtonClick() {
+    this.platform.registerBackButtonAction(() => {
+      // get current active page
+      let view = this.nav.getActive();
+      if (view.component.name == "HomePage") {
+        //Double check to exit app                  
+        if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
+          this.platform.exitApp(); //Exit from app
+        } else {
+          this.lastTimeBackPress = new Date().getTime();
+        }
+      } else {
+        // go to previous page
+        this.nav.pop({});
+      }
+    });
+  
+  }
   initializeApp() {
     this.platform.ready().then(() => {
+      this.backButtonClick()//registerBackButtonAction
       this.storage.get("listExr")
         .then(res => {
           if (!!res) {

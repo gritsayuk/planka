@@ -19,6 +19,8 @@ export class AddComplecxExercisesPage {
   ComplExr:any = {
   nameComplexExr: "",
   pause: 3,
+  progressNum:5,
+  progressPer:2,
   Exr: []
   };
   editIndex: number = -1;
@@ -31,6 +33,7 @@ export class AddComplecxExercisesPage {
   translateComplex: any;
   actionSheetOption: any;
   setLastTime: number = 0;
+  inputEdit: boolean = false;
   
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -39,7 +42,9 @@ export class AddComplecxExercisesPage {
               private admobFree: AdMobFree,
               private translate: TranslateService,
               public alertController: AlertController) {
-    this.editIndex = this.navParams.data['indx'];
+    if (this.navParams.data['indx'] !== undefined) {
+      this.editIndex = this.navParams.data['indx'];
+    }
     translate.get('AddComplecxExercisesPage')
       .subscribe(value => {
           this.transtateList = value;

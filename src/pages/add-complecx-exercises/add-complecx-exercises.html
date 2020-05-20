@@ -1,23 +1,23 @@
 <ion-header>
   <ion-navbar text-center>
     <ion-title *ngIf="editIndex >= 0">{{'AddComplecxExercisesPage.AddComplecxExercises' | translate}}</ion-title>
-    <ion-title *ngIf="!editIndex || editIndex == -1">{{'AddComplecxExercisesPage.NewComplecxExercises' | translate}}</ion-title>
+    <ion-title *ngIf="editIndex == -1">{{'AddComplecxExercisesPage.NewComplecxExercises' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.NameComplex' | translate}}</ion-label>
-      <ion-input *ngIf="ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExrLang"></ion-input>
-      <ion-input *ngIf="!ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExr"></ion-input>
+      <ion-input  *ngIf="ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExrLang" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
+      <ion-input *ngIf="!ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExr" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>
-      <ion-input placeholder="{{'AddComplecxExercisesPage.Pause' | translate}}" [(ngModel)]="ComplExr.pause"></ion-input>
+      <ion-input placeholder="{{'AddComplecxExercisesPage.Pause' | translate}}" [(ngModel)]="ComplExr.pause" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.ProgressLb' | translate}}</ion-label>
-      <ion-input placeholder="{{'AddComplecxExercisesPage.ProgressNum' | translate}}" [(ngModel)]="ComplExr.progressNum"></ion-input>
+      <ion-input placeholder="{{'AddComplecxExercisesPage.ProgressNum' | translate}}" [(ngModel)]="ComplExr.progressNum" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
       <ion-select interface="popover" placeholder="AddComplecxExercisesPage.ProgressLb" [(ngModel)]="ComplExr.progressPer">
         <ion-option value="1">{{'AddComplecxExercisesPage.D1' | translate}}</ion-option>
         <ion-option value="2">{{'AddComplecxExercisesPage.D2' | translate}}</ion-option>
@@ -56,7 +56,7 @@
   </ion-list >
   <button ion-button color="light" (click)="presentActionSheet()" class = "button-1">{{'AddComplecxExercisesPage.Add' | translate}}</button>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="!inputEdit">
   <tr>
     <td  class = "button-2" colspan=1>
       <button ion-button color="light" (click)="Save()" class = "button-3">{{'AddComplecxExercisesPage.Save' | translate}}</button>

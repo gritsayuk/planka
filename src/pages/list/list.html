@@ -40,9 +40,9 @@
           <button ion-fab [ngClass]="pDay.status == 0 ? 'fab-grey' : 'fab-green'">{{pDay.day}}</button>
         </ion-fab>
       </div>
-      <div>
+      <!--div>
         {{'StartPage.Count' | translate}}: {{item.Exr.length}}
-      </div>
+      </div-->
         <table class="edit-tbl">
           <tr>
             <td>
@@ -63,24 +63,4 @@
     </ion-card>
   </ion-reorder-group>
   </div>
-  
-<!--ion-list *ngIf="listExr.length > 0" side = "start" reorder="{{reorderItems}}" (ionItemReorder)="itemReorder($event)">
-     <ion-item-sliding *ngFor="let item of listExr; let i = index" >
-       <ion-item (onPressing)="alert('onPressing')" >
-        <ion-label (click)="runExr (i)">
-          <h1 *ngIf="item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{'DefaultListExr.ComplexName.'+item.nameComplexExr | translate}}</h1>
-          <h1 *ngIf="!item.standart" [ngClass]="!reorderItems ? 'text-lable-pr' : 'text-lable-def'">{{item.nameComplexExr}}</h1>
-          <p>{{'StartPage.Count' | translate}}: {{item.Exr.length}}</p>
-        </ion-label>
-        <ion-text class="cust-ion-icon-center" item-end	*ngIf = "reorderItems" (click)="deleteItem(i)">
-          <ion-icon slot="center" name="trash" color = "danger"></ion-icon>
-          <p class="menu-item">{{'StartPage.Delete' | translate}}</p>
-        </ion-text>
-        <ion-text class="cust-ion-icon-center" item-end	*ngIf = "reorderItems" (click)="edItem(i)">
-          <ion-icon name="create" color = "secondary"></ion-icon><p class="menu-item">{{'StartPage.Edit' | translate}}</p>
-        </ion-text>
-       </ion-item>
-     </ion-item-sliding>
-  </ion-list-->
-
 </ion-content>

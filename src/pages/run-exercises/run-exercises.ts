@@ -295,7 +295,7 @@ export class RunExercisesPage {
   }
 
   resumeTimer() {
-    this.startTimer();
+    this.startTimer(3);
   }
   runPercent() {
     //console.log(">>>1",this.listExrProgress);
