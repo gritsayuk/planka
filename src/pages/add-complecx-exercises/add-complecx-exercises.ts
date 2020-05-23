@@ -82,6 +82,12 @@ export class AddComplecxExercisesPage {
   ionViewDidEnter() {
     this.showBannerAd();
   }
+  ionInput(ev) {
+    console.log(ev.keyCode);
+    if(ev.keyCode == "13") {
+      alert(ev.keyCode);
+    }
+  }
   changeTime(timeStr) {
     //alert(this.getTime(timeStr));
     this.setLastTime = Date.parse(timeStr) - this.stardDT;

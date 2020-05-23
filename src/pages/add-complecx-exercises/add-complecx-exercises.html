@@ -8,8 +8,8 @@
 <ion-content padding>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.NameComplex' | translate}}</ion-label>
-      <ion-input  *ngIf="ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExrLang" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
-      <ion-input *ngIf="!ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExr" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
+      <ion-input  *ngIf="ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExrLang" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false" (keyup)="ionInput($event)"></ion-input>
+      <ion-input *ngIf="!ComplExr.standart" placeholder="{{'AddComplecxExercisesPage.NameComplex' | translate}}" [(ngModel)]="ComplExr.nameComplexExr" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false" (keyup)="ionInput($event)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>
