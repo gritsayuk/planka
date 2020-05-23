@@ -13,11 +13,11 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.Pause' | translate}}</ion-label>
-      <ion-input placeholder="{{'AddComplecxExercisesPage.Pause' | translate}}" [(ngModel)]="ComplExr.pause" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
+      <ion-input type="number" placeholder="{{'AddComplecxExercisesPage.Pause' | translate}}" [(ngModel)]="ComplExr.pause" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">{{'AddComplecxExercisesPage.ProgressLb' | translate}}</ion-label>
-      <ion-input placeholder="{{'AddComplecxExercisesPage.ProgressNum' | translate}}" [(ngModel)]="ComplExr.progressNum" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
+      <ion-input type="number" placeholder="{{'AddComplecxExercisesPage.ProgressNum' | translate}}" [(ngModel)]="ComplExr.progressNum" (ionFocus)="inputEdit = true" (ionBlur)="inputEdit = false"></ion-input>
       <ion-select interface="popover" placeholder="AddComplecxExercisesPage.ProgressLb" [(ngModel)]="ComplExr.progressPer">
         <ion-option value="1">{{'AddComplecxExercisesPage.D1' | translate}}</ion-option>
         <ion-option value="2">{{'AddComplecxExercisesPage.D2' | translate}}</ion-option>
