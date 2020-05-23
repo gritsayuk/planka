@@ -37,12 +37,9 @@
     <ion-card-content>
       <div  class="cust-fab">
         <ion-fab *ngFor="let pDay of item.historySevenDay" >
-          <button ion-fab [ngClass]="pDay.status == 0 ? 'fab-grey' : 'fab-green'">{{pDay.day}}</button>
+          <button ion-fab [ngClass]="pDay.status == 0 ? 'fab-grey' : 'fab-green'">{{"StartPage.day-"+pDay.day | translate}}</button>
         </ion-fab>
       </div>
-      <!--div>
-        {{'StartPage.Count' | translate}}: {{item.Exr.length}}
-      </div-->
         <table class="edit-tbl">
           <tr>
             <td>
