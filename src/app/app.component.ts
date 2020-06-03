@@ -13,6 +13,7 @@ import { StartPage } from '../pages/start/start';
 import { SelectExistPage } from '../pages/select-exist/select-exist';
 import { AddComplecxExercisesPage } from '../pages/add-complecx-exercises/add-complecx-exercises';
 import { TestExercisesPage } from '../pages/test-exercises/test-exercises';
+//import { GoogleAnalyticsOriginal } from '@ionic-native/google-analytics';
 
 
 @Component({
@@ -39,6 +40,16 @@ export class MyApp {
     this.initTranslate ();
     this.initializeApp();
   }
+  initGA() {/*
+    this.ga.startTrackerWithId('UA-00000000-0')
+    .then(() => {
+      console.log('Google analytics is ready now');
+      //the component is ready and you can call any method here
+      this.ga.debugMode();
+      this.ga.setAllowIDFACollection(true);
+    })
+    .catch(e => console.log('Error starting GoogleAnalytics', e));    
+  */}
   initTranslate () {
     
     this.storage.get("AppLanguage")
@@ -73,22 +84,33 @@ export class MyApp {
     this.platform.registerBackButtonAction(() => {
       // get current active page
       let view = this.nav.getActive();
-      if (view.component.name == "HomePage") {
+      if (view.component.name == "ListPage" || view.component.name == "StartPage") {
         //Double check to exit app                  
+        console.log(">>>registerBackButtonAction");
+        console.log(">>>1",new Date().getTime());
+        console.log(">>>2",this.lastTimeBackPress);
+        console.log(">>>3",this.timePeriodToExit);
         if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
           this.platform.exitApp(); //Exit from app
+
         } else {
           this.lastTimeBackPress = new Date().getTime();
         }
       } else {
         // go to previous page
-        this.nav.pop({});
+        if (this.nav.canGoBack()) {
+          this.nav.pop({});
+        } else {          
+          this.nav.setRoot(ListPage);
+          //this.nav.push(ListPage);
+        }
       }
     });
   
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      this.initGA();
       this.backButtonClick()//registerBackButtonAction
       this.storage.get("listExr")
         .then(res => {

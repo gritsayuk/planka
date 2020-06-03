@@ -14,6 +14,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AdMobFree } from '@ionic-native/admob-free'; 
 import { Insomnia } from '@ionic-native/insomnia';
 import { CalendarModule } from "ion2-calendar";
+//import { GoogleAnalyticsOriginal, GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { ListPage } from '../pages/list/list';
 import { RunExercisesPage } from '../pages/run-exercises/run-exercises';
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TestExercisesPage
   ],
   providers: [
+//    GoogleAnalyticsOriginal,
     StatusBar,
     SplashScreen,
     AdMobFree,

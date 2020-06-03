@@ -1,5 +1,5 @@
 {
-  "name": "Planka",
+  "name": "Plank",
   "version": "1.0.13",
   "author": "Chipmen",
   "homepage": "",
@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/admob-free": "^4.20.0",
     "@ionic-native/core": "~4.20.0",
+    "@ionic-native/firebase": "^5.26.0",
     "@ionic-native/insomnia": "^4.20.0",
     "@ionic-native/local-notifications": "^4.20.0",
     "@ionic-native/splash-screen": "~4.20.0",
@@ -31,7 +32,7 @@
     "@ngx-translate/core": "^8.0.0",
     "@ngx-translate/http-loader": "^1.1.0",
     "cordova-admob-sdk": "0.24.1",
-    "cordova-android": "8.1.0",
+    "cordova-android": "^8.1.0",
     "cordova-plugin-admob-free": "0.27.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-insomnia": "^4.3.0",
@@ -64,7 +65,7 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "29.+"
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "28.+"
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},

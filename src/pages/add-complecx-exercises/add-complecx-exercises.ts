@@ -83,9 +83,9 @@ export class AddComplecxExercisesPage {
     this.showBannerAd();
   }
   ionInput(ev) {
-    console.log(ev.keyCode);
+    console.log(ev);
     if(ev.keyCode == "13") {
-      alert(ev.keyCode);
+      ev.target.blur();
     }
   }
   changeTime(timeStr) {

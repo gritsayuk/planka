@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "552175837605",
+    "firebase_url": "https://plankachipmanua.firebaseio.com",
+    "project_id": "plankachipmanua",
+    "storage_bucket": "plankachipmanua.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552175837605:android:37b6f006fbf35da4fd084c",
+        "android_client_info": {
+          "package_name": "planka.chipman.ua"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552175837605-r85p5j2355imhlv4vriuh6kdnmpo9j7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLQjsbYG0wzgIfKjE9pnwKoV5XnJ_-edA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552175837605-r85p5j2355imhlv4vriuh6kdnmpo9j7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
