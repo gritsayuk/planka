@@ -14,7 +14,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AdMobFree } from '@ionic-native/admob-free'; 
 import { Insomnia } from '@ionic-native/insomnia';
 import { CalendarModule } from "ion2-calendar";
-//import { GoogleAnalyticsOriginal, GoogleAnalytics } from '@ionic-native/google-analytics';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 import { ListPage } from '../pages/list/list';
 import { RunExercisesPage } from '../pages/run-exercises/run-exercises';
@@ -76,7 +76,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     Insomnia,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     //LocalNotifications,
-    HttpClient
+    HttpClient,
+    FirebaseAnalytics
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

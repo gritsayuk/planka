@@ -13,7 +13,7 @@ import { StartPage } from '../pages/start/start';
 import { SelectExistPage } from '../pages/select-exist/select-exist';
 import { AddComplecxExercisesPage } from '../pages/add-complecx-exercises/add-complecx-exercises';
 import { TestExercisesPage } from '../pages/test-exercises/test-exercises';
-//import { GoogleAnalyticsOriginal } from '@ionic-native/google-analytics';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 
 @Component({
@@ -35,21 +35,13 @@ export class MyApp {
               public splashScreen: SplashScreen,
               //private localNotifications: LocalNotifications,
               private translate: TranslateService,
-              private storage: Storage) {
+              private storage: Storage,
+              private firebaseAnalytics: FirebaseAnalytics) {
                 
-    this.initTranslate ();
+    //this.initTranslate ();
     this.initializeApp();
   }
-  initGA() {/*
-    this.ga.startTrackerWithId('UA-00000000-0')
-    .then(() => {
-      console.log('Google analytics is ready now');
-      //the component is ready and you can call any method here
-      this.ga.debugMode();
-      this.ga.setAllowIDFACollection(true);
-    })
-    .catch(e => console.log('Error starting GoogleAnalytics', e));    
-  */}
+
   initTranslate () {
     
     this.storage.get("AppLanguage")
@@ -110,7 +102,8 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      this.initGA();
+      this.initTranslate ();
+      this.initFB();
       this.backButtonClick()//registerBackButtonAction
       this.storage.get("listExr")
         .then(res => {
@@ -148,7 +141,10 @@ export class MyApp {
     trigger: { every: ELocalNotificationTriggerUnit.DAY }
   });
 }*/
-
+  initFB () {
+    this.firebaseAnalytics.setEnabled(true);
+    this.firebaseAnalytics.logEvent("StartApp",{});
+  }
   openPage(page) {
     this.nav.setRoot(page.component);
   }
