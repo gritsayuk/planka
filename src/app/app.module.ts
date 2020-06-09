@@ -14,7 +14,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AdMobFree } from '@ionic-native/admob-free'; 
 import { Insomnia } from '@ionic-native/insomnia';
 import { CalendarModule } from "ion2-calendar";
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ListPage } from '../pages/list/list';
 import { RunExercisesPage } from '../pages/run-exercises/run-exercises';

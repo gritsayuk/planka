@@ -9,9 +9,12 @@
   "DefaultListExr": {
     "ComplexName": {
       "Simple": "Easy",
+      "Simple Desc": "Beginner workout, three approaches to exercise a plank on elbows",
       "Normal": "Normal",
+      "Normal Desc": "Workout for beginners, three approaches to exercise is classic plank",
       "Simple Left": "Simple Left",
-      "Simple All": "Professional"
+      "Simple All": "Professional",
+      "Simple All Desc": "Training for advanced athletes, consists of four types of plank"
     }
   },
   "FirstPage": {
@@ -38,13 +41,14 @@
     "Delete": "Delete",
     "Edit": "Edit",
     "Count": "Count",
-    "day-1": "Пн",
-    "day-2": "Вів",
-    "day-3": "Сер",
-    "day-4": "Чт",
-    "day-5": "Пт",
-    "day-6": "Сб",
-    "day-7": "Нд"
+    "day-1": "Mo",
+    "day-2": "Tu",
+    "day-3": "We",
+    "day-4": "Th",
+    "day-5": "Fr",
+    "day-6": "Sa",
+    "day-7": "Su"
+
   },
   "RunPage": {
     "Start": "Start",

@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ListPage } from '../list/list';
 
@@ -23,12 +24,30 @@ constructor(public navCtrl: NavController,
             public navParams: NavParams, 
             private translate: TranslateService,
             private storage: Storage,
-            public alertController: AlertController) {
+            public alertController: AlertController,
+            private firebaseAnalytics: FirebaseAnalytics) {
    translate.get('CalendarPage')
       .subscribe(value => {
           this.transtateList = value;
           this.initCalendar();
       });
+  }
+  ionViewDidEnter() {
+    this.eventFB ('e');
+  }
+  eventFB (ev) {
+    let evTxt = '';
+    switch(ev) {
+      case 'e':
+        evTxt = "EP_Calendar";
+        break;
+      default:
+        evTxt = "EV_Error";
+        break;
+    }
+    this.firebaseAnalytics.logEvent(evTxt,{})
+		.then((res: any) => console.log("firebaseAnalytics.StartApp: ",res))
+		.catch((error: any) => console.error("firebaseAnalytics.StartApp Error: ",error));
   }
   initCalendar() {
     let startDT : Date = new Date();

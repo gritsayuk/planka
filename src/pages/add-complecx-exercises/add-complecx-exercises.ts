@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertController, Content } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { RunExercisesPage} from '../run-exercises/run-exercises';
 import { ListPage } from '../list/list';
@@ -41,7 +42,8 @@ export class AddComplecxExercisesPage {
               private storage: Storage,
               private admobFree: AdMobFree,
               private translate: TranslateService,
-              public alertController: AlertController) {
+              public alertController: AlertController,
+              private firebaseAnalytics: FirebaseAnalytics) {
     if (this.navParams.data['indx'] !== undefined) {
       this.editIndex = this.navParams.data['indx'];
     }
@@ -81,6 +83,22 @@ export class AddComplecxExercisesPage {
 }
   ionViewDidEnter() {
     this.showBannerAd();
+    this.eventFB ('e');
+  }
+  eventFB (ev) {
+    switch(ev) {
+      case 'e':
+        this.firebaseAnalytics.logEvent("EP_AddExer",{})
+          .then((res: any) => console.log("firebaseAnalytics.StartApp: ",res))
+          .catch((error: any) => console.error("firebaseAnalytics.StartApp Error: ",error));
+        break;
+      case 'bs':
+        this.firebaseAnalytics.logEvent("AddExer_Save",{})
+          .then((res: any) => console.log("firebaseAnalytics.StartApp: ",res))
+          .catch((error: any) => console.error("firebaseAnalytics.StartApp Error: ",error));
+        break;
+    }
+
   }
   ionInput(ev) {
     console.log(ev);
@@ -169,6 +187,7 @@ export class AddComplecxExercisesPage {
     console.log(">>>>>this.ComplExr>>>",this.ComplExr);
   }
   Save() {
+    this.eventFB ('bs');
       let dtToId = new Date()
       this.ComplExr.id = dtToId.getTime();
       if (this.ComplExr.Exr.length == 0) {

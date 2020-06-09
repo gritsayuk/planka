@@ -4,6 +4,7 @@ import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { Insomnia, } from '@ionic-native/insomnia';
 import { Storage } from '@ionic/storage';
 import { AddComplecxExercisesPage } from '../add-complecx-exercises/add-complecx-exercises';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @Component({
   selector: 'page-run-exercises',
@@ -36,7 +37,8 @@ export class RunExercisesPage {
               private admobFree: AdMobFree, 
               public navParams: NavParams,
               private insomnia: Insomnia,
-              private storage: Storage) {
+              private storage: Storage,
+              private firebaseAnalytics: FirebaseAnalytics) {
       this.tzoffset = (new Date("01.01.2000")).getTimezoneOffset() * 60000; //offset in milliseconds
       this.listExr = {};
       this.listExr.Exr = new Array();
@@ -75,6 +77,7 @@ export class RunExercisesPage {
   }
   ionViewDidEnter() {
     this.showBannerAd();
+    this.eventFB ('e');
   }
   ionViewDidLeave() {
     this.Stop ();
@@ -85,6 +88,22 @@ export class RunExercisesPage {
         () => console.log('>>>>>>allowSleepAgain success')
       );
     }
+  }
+
+  eventFB (ev) {
+    switch(ev) {
+      case 'e':
+        this.firebaseAnalytics.logEvent("EP_RunExercises",{})
+          .then((res: any) => console.log("firebaseAnalytics.StartApp: ",res))
+          .catch((error: any) => console.error("firebaseAnalytics.StartApp Error: ",error));
+        break;
+      case 'bs':
+        this.firebaseAnalytics.logEvent("RunE_Start",{})
+          .then((res: any) => console.log("firebaseAnalytics.StartApp: ",res))
+          .catch((error: any) => console.error("firebaseAnalytics.StartApp Error: ",error));
+        break;
+    }
+
   }
   addProgress() {
     let addAllTime: number = 0;
@@ -195,6 +214,7 @@ export class RunExercisesPage {
     }).catch(e => {});
 }
   Run () {
+    this.eventFB ('bs');
     if (this.ExrRunIndex != -1) {
       this.ExrRunIndex = -1;
       for (let i = 0; i < this.listExrProgress.Exr.length; i++) {

@@ -13,7 +13,7 @@ import { StartPage } from '../pages/start/start';
 import { SelectExistPage } from '../pages/select-exist/select-exist';
 import { AddComplecxExercisesPage } from '../pages/add-complecx-exercises/add-complecx-exercises';
 import { TestExercisesPage } from '../pages/test-exercises/test-exercises';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 
 @Component({
@@ -142,8 +142,13 @@ export class MyApp {
   });
 }*/
   initFB () {
-    this.firebaseAnalytics.setEnabled(true);
-    this.firebaseAnalytics.logEvent("StartApp",{});
+    this.firebaseAnalytics.setEnabled(true)
+      .then((res: any) => console.log("firebaseAnalytics.setEnabled: ",res))
+      .catch((error: any) => console.error("firebaseAnalytics.setEnabled Error: ",error));
+    this.firebaseAnalytics.logEvent("login",{})
+      .then((res: any) => console.log("firebaseAnalytics.StartApp: ",res))
+      .catch((error: any) => console.error("firebaseAnalytics.StartApp Error: ",error));
+
   }
   openPage(page) {
     this.nav.setRoot(page.component);
